@@ -2,4 +2,4 @@
 [submodule "libft"]
 	path = libft
 	url = git@github.com:iortego42/libft.git
-	branch = push_swap
+	branch = master
