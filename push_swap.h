@@ -4,16 +4,22 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
+# include "libft/stack_files/stack.h"
 
 //
 //---[ PRINCIPAL TOOLS ]---
 //
-void	push(t_list stack_in, t_list stack_out);
-void	swap(t_list stack);
-void	rotate(t_list stack);
-
+void	delete_content(void	*content);
+//
+//---[ SPECIFIC TOOLS ]---
+//
+void	push_A(t_stack *stack_A, t_stack *stack_B);
+void	push_B(t_stack *stack_A, t_stack *stack_B);
+void	swap_AB(t_stack **stack_A, t_stack **stack_B);
+void	rotate_AB(t_stack **stack_A, t_stack **stack_B);
+void	rev_rot_AB(t_stack **stack_A, t_stack **stack_B);
 //
 //---[ ~ ]---
 //
 void	analizeInput(int	*numberlist);
+
