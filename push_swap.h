@@ -6,9 +6,6 @@
 # include <stdlib.h>
 # include "libft/stack_files/stack.h"
 
-
-
-
 //
 //---[ TYPES ]---
 //
@@ -20,9 +17,7 @@ typedef struct s_content
 }	t_content; 
 //
 //---[ PRINCIPAL TOOLS ]---
-//
- 
-void	delete_stack(t_stack **stack);
+// 
 void	delete_content(void *content);
 //
 //---[ SPECIFIC TOOLS ]---
