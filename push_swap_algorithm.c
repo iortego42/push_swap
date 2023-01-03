@@ -28,7 +28,8 @@ t_stack	*charge_stack_A(int	*numberlist, int argc)
 		new_element_content = create_content(numberlist[index], index);
 		if (new_element_content == NULL)
 		{
-			
+			if (stack != NULL)
+				delete_stack(&stack, delete_content);	
 			return (NULL);
 		}
 		if (stack == NULL)

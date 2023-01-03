@@ -18,6 +18,7 @@ typedef struct s_content
 //
 //---[ PRINCIPAL TOOLS ]---
 // 
+t_content	*create_content(int number, int index);
 void	delete_content(void *content);
 //
 //---[ SPECIFIC TOOLS ]---
