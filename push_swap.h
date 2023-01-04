@@ -14,7 +14,8 @@ typedef struct s_content
 	int	number;
 	int index;
 	int order;
-}	t_content; 
+}	t_content;
+
 //
 //---[ PRINCIPAL TOOLS ]---
 // 

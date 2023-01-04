@@ -1,4 +1,3 @@
-#include "libft/stack_files/stack.h"
 #include "push_swap.h"
 
 t_content	*create_content(int number, int index)
@@ -17,10 +16,10 @@ t_content	*create_content(int number, int index)
 
 t_stack	*charge_stack_A(int	*numberlist, int argc)
 {
-	int	index;
-	t_stack *stack;
-	t_content *new_element_content;
-	
+	int			index;
+	t_stack		*stack;
+	t_content	*new_element_content;
+	 
 	stack = NULL;
 	index = 0;
 	while (index < argc)
@@ -40,7 +39,11 @@ t_stack	*charge_stack_A(int	*numberlist, int argc)
 	return (stack);
 }
 
+void	compare_stack()
+{
+
+}
 void	analizeInput(int *numberlist)
 {
-	
+		
 }
