@@ -1,45 +1,6 @@
 #include "push_swap.h"
 
-int	*analize_input(char **argv, int argc)
-{
-	int		*numberlist;
-	int		index;	
-	char	**list;
 
-	if (argc == 2)
-		list = ft_split(argv[1], ' ');
-	else
-		list = ft_argvdup(argv, argc);
-	numberlist = (int *)malloc(sizeof(int) * argc);
-	while (list[index] != NULL)
-	{
-		if (analize_number(list[index], &numberlist[index]) == TRUE)
-			index++;
-		else
-		{
-			ft_matrix_delete((void	**)list, 2);
-			free(numberlist);
-			return (NULL);
-		}
-	}
-	ft_matrix_delete((void **)list, 2);
-	return (numberlist);
-}
-
-t_bool	analize_number(char	*numberstring, int *numberoutput)
-{
-	int		index;
-
-	index = 0;
-	while (numberstring[index] != 0)
-	{
-		if (!ft_isdigit(numberstring[index]))
-			return (FALSE);
-		index++;
-	}
-	*numberoutput = ft_atoi(numberstring);
-	return (TRUE);
-}
 
 t_content	*create_content(int number, int index)
 {

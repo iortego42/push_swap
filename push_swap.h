@@ -19,8 +19,8 @@ typedef struct s_content
 //---[ DATA PROCESSING ]---
 //
 
-int	*analize_input(char **argv, int argc);
-t_bool	analize_number(char	*numberstring, int *numberoutput);
+t_bool	analize_input(char **argv, int argc);
+t_bool	assign_number(char	*numberstring, int *numberoutput);
 t_content	*create_content(int number, int index);
 t_stack	*charge_stack_A(int	*numberlist, int argc);
 //
