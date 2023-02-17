@@ -1,4 +1,3 @@
-#include "libft/libft.h"
 #include "push_swap.h"
 
 t_bool	analize_input(char **argv, int argc)
@@ -58,6 +57,7 @@ int	*get_ordered_list(int *numberlist, int size)
 	return (orderedlist);
 }
 
+int gro_elements(t_content	*)
 int get_rate_order(int *numberlist, int size, int *orderedlist)
 {
 	int orderrate;
@@ -78,5 +78,5 @@ int get_rate_order(int *numberlist, int size, int *orderedlist)
 		}
 		index2--;
 	}
-	return (orderrate)
+	return (orderrate);
 }

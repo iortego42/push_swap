@@ -1,15 +1,27 @@
-#include "libft/stack_files/stack.h"
 #include "push_swap.h"
-
 
 t_stack	*go_el(t_stack *stack, int index)
 {
 	t_stack	*element;
 
 	element = stack;
-	while (((t_content *)element->content)->index != index && element->next != NULL)
+	while (((t_content *)element->content)->index != index && \
+			element->next != NULL)
 		element = element->next;
 	if (((t_content *)element->content)->index != index)
+		return (NULL);
+	return (element);
+}
+
+t_stack *go_el_v(t_stack *stack, int value)
+{
+	t_stack *element;
+
+	element = stack;
+	while (((t_content *)element->content)->number != value && \
+			element->next != NULL)
+		element = element->next;
+	if (((t_content *)element->content)->number != value)
 		return (NULL);
 	return (element);
 }
@@ -62,41 +74,5 @@ void	ordernating(t_stack **stack_A, t_stack **stack_B)
 			min = ((t_content *)actual->content)->number;
 		}
 		count++;
-	}
-}
-t_bool	is_top_ordered(t_stack *stack)
-{
-	t_stack	*top;
-
-	top = peek(stack);
-	while (((t_content *)stack->content)->number > \
-			((t_content *)top->content)->number)
-		stack = stack->next;
-	if (stack == top)
-		return (TRUE);
-	return (FALSE);
-}
-void	whoami(t_stack *stack, t_stack *element)
-{
-	while (stack->next != NULL)
-	{
-		if (((t_content *)stack->content)->order != 0)
-			if (((t_content *)stack->content)->number > \
-				((t_content *)element->content)->number) && \
-				((t_content *)stack->content)->index < )
-				
-	}
-}
-void	push_lowers_B(t_stack **stack_A, t_stack **stack_B, int numvalues, \
-		int halfvalue)
-{
-	t_stack	*top;
-	top = peek(*stack_A);
-	while (numvalues > 0)
-	{
-		if (((t_content *)top->content)->number <= halfvalue)
-		{
-			if (((t_content *)top->content)->number <=)	
-		}
 	}
 }

@@ -1,8 +1,25 @@
 #include "push_swap.h"
 
+void	get_mmm(t_data *d, int size)
+{
+	static int index;
+	
+	index = 0;
+	index += size;
+	if (index + size > d->argc)
+		size = d->argc - index;
+	d->max = d->ordlist[index];
+	d->min = d->ordlist[index];
+	while (size > 1)
+	{
+		if (d->max->number < d->ordlist[index]->number)
+			d->max = d->ordlist[index];
+		else if (d->min->number > d->ordlist[index]->number)
+			d->max = d->ordlist[index];
+	}
+}
 
-
-t_content	*create_content(int number, int index)
+t_content	*create_content(int number, int index, int *orderedlist)
 {
 	t_content *new_content;
 
@@ -11,12 +28,12 @@ t_content	*create_content(int number, int index)
 	{
 		new_content->number = number;
 		new_content->index = index;
-		new_content->order = 0;
+		new_content->order = get_rate_order(&number, 1, orderedlist);
 	}
 	return (new_content);
 }
 
-t_stack	*charge_stack_A(int	*numberlist, int argc)
+t_stack	*charge_stack_A(int	*numberlist, int argc, int *orderedlist)
 {
 	int			index;
 	t_stack		*stack;
@@ -26,7 +43,7 @@ t_stack	*charge_stack_A(int	*numberlist, int argc)
 	index = 0;
 	while (index < argc)
 	{
-		new_element_content = create_content(numberlist[index], index);
+		new_element_content = create_content(numberlist[index], index, orderedlist);
 		if (new_element_content == NULL)
 		{
 			if (stack != NULL)
