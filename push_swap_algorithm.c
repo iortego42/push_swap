@@ -27,7 +27,7 @@ void	pushordered(t_data **d)
 	int	size, i, orate;
 
 	size = 6;
-	orate = get_rate_order((*d)->toorder, 6, );
+	;
 	while (size > 0)
 	{
 		if (is_ordered((*d)->B))

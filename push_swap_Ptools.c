@@ -7,7 +7,7 @@ void	push_A(t_stack **stack_A, t_stack **stack_B)
 	
 	top_b = peek(*stack_B);
 	push(stack_A, top_b);
-	pop(*stack_B, delete_content);
+	pop(stack_B, delete_content);
 	write(1, "pa", 2);
 }
 
@@ -17,7 +17,7 @@ void	push_B(t_stack **stack_A, t_stack **stack_B)
 
 	top_a = peek(*stack_A);
 	push(stack_B, top_a);
-	pop(*stack_A, delete_content);
+	pop(stack_A, delete_content);
 	write(1, "pb", 2);
 }
 

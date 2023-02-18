@@ -1,6 +1,5 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -63,5 +62,5 @@ t_stack		*go_el_v(t_stack *stack, int value);
 void		push_element_n_A(t_stack **stack_A, t_stack **stack_B, int index);
 void		push_element_n_B(t_stack **stack_A, t_stack **stack_B, int index);
 void		ordernating(t_stack **stack_A, t_stack **stack_B);
-int			*get_numbers(t_stack)
-
+int			*get_numbers(t_stack);
+#endif
