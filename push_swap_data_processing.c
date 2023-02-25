@@ -12,10 +12,10 @@ void	get_mmm(t_data *d, int size)
 	d->min = d->ordlist[index];
 	while (size > 1)
 	{
-		if (d->max->number < d->ordlist[index]->number)
-			d->max = d->ordlist[index];
-		else if (d->min->number > d->ordlist[index]->number)
-			d->max = d->ordlist[index];
+		if (d->max->number < d->ordlist[index])
+			d->max = (t_content *)go_el_v(d->A, d->ordlist[index])->content;
+		else if (d->min->number > d->ordlist[index])
+			d->min = (t_content *)go_el_v(d->A, d->ordlist[index])->content;
 	}
 }
 
@@ -33,7 +33,7 @@ t_content	*create_content(int number, int index, int *orderedlist)
 	return (new_content);
 }
 
-t_stack	*charge_stack_A(int	*numberlist, int argc, int *orderedlist)
+t_bool	*charge_stack_A(int	*numberlist, int argc, int *orderedlist)
 {
 	int			index;
 	t_stack		*stack;

@@ -1,36 +1,61 @@
+#include "libft/libft.h"
 #include "push_swap.h"
 
-t_bool	analize_input(char **argv, int argc)
+t_bool	argcount(char **argv, int argc, t_data *d)
+{
+	int i;
+
+	i = 0;
+	d->argc = 1;
+	while (argc > 0)
+	{
+		while (argv[argc][i] != 0)
+		{
+			if(ft_isdigit(argv[argc][i]) && (ft_isspace(argv[argc][i + 1]) || \
+						argv[argc][i + 1] == 0))
+				d->argc++;
+			else if (!ft_isdigit(argv[argc][i]) && !ft_isspace(argv[argc][i]))
+				return (FALSE);
+			i++;
+		}
+		argc--;
+	}
+}
+void	argalloc(char **argv, int argc, t_data *d)
+{
+	char	**list;
+	int		i;
+
+	i = 0;
+	while	
+}
+
+t_bool	analize_input(char **argv, int argc, t_data *d)
 {
 	int	index, argindex;
 
 	argindex = 1;
 	index = 0;
+	d->ordlist = (int *)malloc(d->argc * sizeof(int));
 	while (argc > argindex)
 	{
-		while (ft_isdigit(argv[argindex][index]) ||	\
-				ft_isspace(argv[argindex][index]))
+		d->argc++;
+		while (argv[argindex][index] != 0)
+		{
+			if (!ft_isdigit(argv[argindex][index]) && \
+				!ft_isspace(argv[argindex][index]))
+				return (FALSE);
+			if (ft_isspace(argv[argindex][index]))
+				d->argc++;
 			index++;
+		}
 		argindex++;
 	}
 	if (argc == argindex)
 		return (TRUE);
+	if (get_rate_order(d->toorder, d->argc, d->ordlist) == 0)
+		return (FALSE);
 	return (FALSE);
-}
-
-t_bool	assign_number(char *numberstring, int *numberoutput)
-{
-	int		index;
-
-	index = 0;
-	while (numberstring[index] != 0)
-	{
-		if (!ft_isdigit(numberstring[index]))
-			return (FALSE);
-		index++;
-	}
-	*numberoutput = ft_atoi(numberstring);
-	return (TRUE);
 }
 
 int	*get_ordered_list(int *numberlist, int size)
@@ -57,7 +82,6 @@ int	*get_ordered_list(int *numberlist, int size)
 	return (orderedlist);
 }
 
-int gro_elements(t_content	*)
 int get_rate_order(int *numberlist, int size, int *orderedlist)
 {
 	int orderrate;

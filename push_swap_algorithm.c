@@ -22,6 +22,8 @@ t_bool 	is_ordered(t_stack *stack)
 	return (TRUE);
 }
 
+
+
 void	pushordered(t_data **d)
 {
 	int	size, i, orate;
