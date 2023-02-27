@@ -26,6 +26,7 @@ typedef	struct s_data
 	t_stack		*A;
 	t_stack		*B;
 } t_data;
+typedef enum {ERROR} t_err_code;
 //
 //---[ DATA PROCESSING ]---
 //
@@ -44,7 +45,7 @@ t_bool		assign_number(char	*numberstring, t_data *d);
 //---[ INITIALIZATION ]---
 //
 t_bool		charge_stack_A(t_data *d);
-t_data 		*init(int	**argv, int argc);
+void		init(t_data *d);
 //
 //---[ PRINCIPAL TOOLS ]---
 // 
