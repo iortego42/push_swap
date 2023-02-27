@@ -29,7 +29,7 @@ typedef	struct s_data
 //
 //---[ DATA PROCESSING ]---
 //
-t_content	*create_content(int number, int index, int *orderedlist);
+t_content	*create_content(int number, int index, t_data *d);
 void		get_mmm(t_data *d, int size);
 //
 void		delete_content(void *content);
@@ -43,7 +43,7 @@ t_bool		assign_number(char	*numberstring, t_data *d);
 //
 //---[ INITIALIZATION ]---
 //
-t_bool		*charge_stack_A(t_data *d);
+t_bool		charge_stack_A(t_data *d);
 t_data 		*init(int	**argv, int argc);
 //
 //---[ PRINCIPAL TOOLS ]---

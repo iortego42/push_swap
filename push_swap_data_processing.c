@@ -8,8 +8,8 @@ void	get_mmm(t_data *d, int size)
 	index += size;
 	if (index + size > d->argc)
 		size = d->argc - index;
-	d->max = d->ordlist[index];
-	d->min = d->ordlist[index];
+	d->max->number = d->ordlist[index];
+	d->min->number = d->ordlist[index];
 	while (size > 1)
 	{
 		if (d->max->number < d->ordlist[index])
@@ -19,7 +19,7 @@ void	get_mmm(t_data *d, int size)
 	}
 }
 
-t_content	*create_content(int number, int index, int *orderedlist)
+t_content	*create_content(int number, int index, t_data *d)
 {
 	t_content *new_content;
 
@@ -28,32 +28,32 @@ t_content	*create_content(int number, int index, int *orderedlist)
 	{
 		new_content->number = number;
 		new_content->index = index;
-		new_content->order = get_rate_order(&number, 1, orderedlist);
+		new_content->order = get_rate_order(&number, 1, d->ordlist);
 	}
 	return (new_content);
 }
 
-t_bool	*charge_stack_A(int	*numberlist, int argc, int *orderedlist)
+t_bool	charge_stack_A(t_data *d)
 {
 	int			index;
-	t_stack		*stack;
 	t_content	*new_element_content;
 	 
-	stack = NULL;
+	d->A = NULL;
 	index = 0;
-	while (index < argc)
+	while (index < d->argc)
 	{
-		new_element_content = create_content(numberlist[index], index, orderedlist);
+		new_element_content = create_content(d->toorder[index], index, d);
 		if (new_element_content == NULL)
 		{
-			if (stack != NULL)
-				delete_stack(&stack, delete_content);	
-			return (NULL);
+			if (d->A != NULL)
+				delete_stack(&d->A, delete_content);	
+			return (FALSE);
 		}
-		if (stack == NULL)
-			stack = new_stack_element(new_element_content);
+		if (d->A == NULL)
+			d->A = new_stack_element(new_element_content);
 		else
-			stack->next = new_stack_element(new_element_content);
+			d->A->next = new_stack_element(new_element_content);
 	}
-	return (stack);
+	
+	return (TRUE);
 }
