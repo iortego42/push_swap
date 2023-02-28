@@ -3,15 +3,20 @@
 void	push_n6_B(t_data **d)
 {
 	t_stack *min;
+	f_action funct;
 	
-
 	min = go_el((*d)->A, (*d)->min->index);
+	if ((*d)->min->index > (*d)->A_elem)
+		funct = rotate;
+	else
+		funct = rev_rot;
 	while((*d)->A != min)
 	{
 		if (((t_content *)(*d)->A->content)->number < (*d)->max->number)
-			push_A(&(*d)->A, &(*d)->B);
-		rotate(&(*d)->A);
+			push_B(&(*d)->A, &(*d)->B);
+		funct(&(*d)->A);
 	}
+
 }
 
 t_bool 	is_ordered(t_stack *stack)

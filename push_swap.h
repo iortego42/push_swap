@@ -23,29 +23,41 @@ typedef	struct s_data
 	int			*ordlist;
 	int			*toorder;
 	int			argc;
+	int			A_elem;
 	t_stack		*A;
 	t_stack		*B;
 } t_data;
-typedef enum {ERROR} t_err_code;
+typedef enum {UNKNOWN, ERROR, PARSE, STACK} t_err_code;
+typedef void (*f_action)(t_stack **);
 //
 //---[ DATA PROCESSING ]---
 //
 t_content	*create_content(int number, int index, t_data *d);
 void		get_mmm(t_data *d, int size);
 //
-void		delete_content(void *content);
 //
 //---[ DATA ANALISYS ]---
 //
 int			*get_ordered_list(int *numberlist, int size);
 int 		get_rate_order(int *numberlist, int size, int *orderedlist);
+char		***args_split(char **argv, int argc, t_data *d);
+t_bool		get_toorder(char	***list, t_data	*d);
+t_bool		check_numbers(char	**argv, int argc, t_data *d);
 t_bool		analize_input(char **argv, int argc, t_data *d);
-t_bool		assign_number(char	*numberstring, t_data *d);
 //
 //---[ INITIALIZATION ]---
 //
 t_bool		charge_stack_A(t_data *d);
 void		init(t_data *d);
+//
+//---[ ERROR ]---
+//
+void	spawn_error_message(const char *message);	
+void	select_error(t_err_code code);
+void	delete_content(void *content);
+void	delete_data(t_data *);
+void	error(t_data *d);
+//
 //
 //---[ PRINCIPAL TOOLS ]---
 // 
@@ -61,4 +73,5 @@ t_stack		*go_el(t_stack *stack, int index);
 t_stack		*go_el_v(t_stack *stack, int value);
 // revisar go_el_v es muy probable que no sea necesaria ya que ordlist es una lista de t_content y aunque este ordenada tiene los indices del stack sin ordenar.
 int			*get_numbers(t_stack);
+
 #endif

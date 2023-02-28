@@ -48,7 +48,7 @@ t_bool	get_toorder(char	***list, t_data	*d)
 	int	x, y, z, index;
 	
 	index = 0;
-	d->toorder = (int *) malloc(sizeof(int) * d->argc);
+	d->toorder = (int *)malloc(sizeof(int) * d->argc);
 	if (d->toorder == NULL)
 		return (FALSE);
 	while (list[x + 1] != NULL)
@@ -67,27 +67,6 @@ t_bool	get_toorder(char	***list, t_data	*d)
 	}
 	return (TRUE);
 }
-
-t_bool	analize_input(char **argv, int argc, t_data *d)
-{
-	char	***list;
-
-	if (check_numbers(argv, argc, d) != TRUE)
-		return (FALSE);
-	list = args_split(argv, argc, d);
-	if (list == NULL)
-		return (FALSE);
-	if (get_toorder(list, d) != TRUE)
-		return (ft_matrix_delete((void **)list, 3), FALSE);
-	d->ordlist = get_ordered_list(d->toorder, d->argc);
-	if (d->ordlist == NULL)
-		return (ft_matrix_delete((void **)list, 3), FALSE);
-	if (get_rate_order(d->toorder, d->argc, d->ordlist) == 0)
-		return (ft_matrix_delete((void **)list, 3), FALSE);
-	ft_matrix_delete((void **)list, 3);
-	return (TRUE);
-}
-
 
 int	*get_ordered_list(int *numberlist, int size)
 {

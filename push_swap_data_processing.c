@@ -2,20 +2,23 @@
 
 void	get_mmm(t_data *d, int size)
 {
-	static int index;
-	
-	index = 0;
-	index += size;
-	if (index + size > d->argc)
-		size = d->argc - index;
-	d->max->number = d->ordlist[index];
-	d->min->number = d->ordlist[index];
-	while (size > 1)
+	int	i;
+
+	i = 0;
+	if	(d->min == NULL)
 	{
-		if (d->max->number < d->ordlist[index])
-			d->max = (t_content *)go_el_v(d->A, d->ordlist[index])->content;
-		else if (d->min->number > d->ordlist[index])
-			d->min = (t_content *)go_el_v(d->A, d->ordlist[index])->content;
+		d->min = (t_content *)go_el_v(d->A, d->ordlist[0])->content;
+		d->max = (t_content *)go_el_v(d->A, d->ordlist[size])->content;
+		d->median = (t_content *)go_el_v(d->A, d->ordlist[size / 2])->content;
+	}
+	else
+	{
+		while (d->ordlist[i] != d->min->number)
+			i++;
+		d->min = (t_content *)go_el_v(d->A, d->ordlist[i])->content;
+		d->max = (t_content *)go_el_v(d->A, d->ordlist[i + size])->content;
+		d->median = (t_content *)go_el_v(d->A, \
+				d->ordlist[(i + size) / 2])->content;
 	}
 }
 
@@ -53,7 +56,8 @@ t_bool	charge_stack_A(t_data *d)
 			d->A = new_stack_element(new_element_content);
 		else
 			d->A->next = new_stack_element(new_element_content);
+		index++;
 	}
-	
+	d->A_elem = index++;	
 	return (TRUE);
 }
