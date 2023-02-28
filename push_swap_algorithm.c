@@ -2,21 +2,32 @@
 
 void	push_n6_B(t_data **d)
 {
-	t_stack *min;
-	f_action funct;
-	
+	t_stack		*min;
+	f_action	funct;
+	int			elements;
+
+	elements = 0;
 	min = go_el((*d)->A, (*d)->min->index);
-	if ((*d)->min->index > (*d)->A_elem)
+	if ((*d)->min->index > (*d)->A_elem / 2)
 		funct = rotate;
 	else
 		funct = rev_rot;
-	while((*d)->A != min)
+	while((*d)->A != min || (elements % 6) != 0)
 	{
 		if (((t_content *)(*d)->A->content)->number < (*d)->max->number)
+		{
 			push_B(&(*d)->A, &(*d)->B);
-		funct(&(*d)->A);
+			(*d)->A_elem--;
+			elements++;
+		}
+		else
+			funct(&(*d)->A);
 	}
+}
 
+void	ordering_A(t_data *d)
+{
+	
 }
 
 t_bool 	is_ordered(t_stack *stack)
