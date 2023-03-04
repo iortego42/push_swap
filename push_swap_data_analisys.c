@@ -1,4 +1,3 @@
-#include "libft/libft.h"
 #include "push_swap.h"
 
 char	***args_split(char **argv, int argc, t_data *d)

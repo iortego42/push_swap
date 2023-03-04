@@ -1,4 +1,3 @@
-#include "libft/stack_files/stack.h"
 #include "push_swap.h"
 
 void	push_A(t_stack **stack_A, t_stack **stack_B)

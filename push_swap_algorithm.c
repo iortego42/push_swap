@@ -25,9 +25,44 @@ void	push_n6_B(t_data **d)
 	}
 }
 
-void	ordering_A(t_data *d)
+void	push_chunk_A(t_data *d, int size)
 {
+	f_action	move;
+	t_stack		*top;
+	int			index, step;
+
+	top = peek(d->B);
+	step = size;
+	index = ((t_content *)top->content)->index;
+	if (((t_content *)top->content)->index < \
+			((t_content *)d->B->content)->index)
+	{
+		move = rev_rot;
+		index = ((t_content *)d->B)->index
+	}
+	else
+		move = rotate;
+	while (index < size - 1)
+	{
+		if (((t_content *)top->content)->index != index)
+		move(&d->B);
+	}
 	
+}
+
+void	ordering_to_A(t_data *d)
+{
+	int	index;
+	t_stack *actual;
+
+	index = 0;
+	while (index < d->argc)	
+	{
+		while (d->ordlist[index] != ((t_content *)actual->content)->number)
+		{
+				
+		}	
+	}
 }
 
 t_bool 	is_ordered(t_stack *stack)
@@ -36,25 +71,4 @@ t_bool 	is_ordered(t_stack *stack)
 			((t_content *)stack->next->content)->number)
 		return (FALSE);
 	return (TRUE);
-}
-
-
-
-void	pushordered(t_data **d)
-{
-	int	size, i, orate;
-
-	size = 6;
-	;
-	while (size > 0)
-	{
-		if (is_ordered((*d)->B))
-		{
-			i = 2;
-			while (i-- > 0)
-				push_B(&(*d)->A, &(*d)->B);
-			size--;
-		}
-		size--;
-	}
 }

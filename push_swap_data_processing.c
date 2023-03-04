@@ -38,14 +38,17 @@ t_content	*create_content(int number, int index, t_data *d)
 
 t_bool	charge_stack_A(t_data *d)
 {
-	int			index;
+	int			index, ordind;
 	t_content	*new_element_content;
 	 
 	d->A = NULL;
 	index = 0;
 	while (index < d->argc)
 	{
-		new_element_content = create_content(d->toorder[index], index, d);
+		ordind = 0;
+		while (d->ordlist[ordind] != d->toorder[index])
+			ordind++;
+		new_element_content = create_content(d->toorder[index], ordind, d);
 		if (new_element_content == NULL)
 		{
 			if (d->A != NULL)

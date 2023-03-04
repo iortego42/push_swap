@@ -1,4 +1,3 @@
-#include "libft/stack_files/stack.h"
 #include "push_swap.h"
 
 static const char	*const error_mess[4] = {"UNKNOW ERROR", "ERROR", \

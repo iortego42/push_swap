@@ -26,4 +26,3 @@ t_stack *go_el_v(t_stack *stack, int value)
 	return (element);
 }
 
-t
