@@ -17,9 +17,10 @@ typedef struct s_content
 }	t_content;
 typedef	struct s_data
 {
-	t_content	*max;
 	t_content	*min;
-	t_content	*median;
+	// revisar si realmente necesito max y median
+	t_content	*max;
+	t_content	*media;
 	int			*ordlist;
 	int			*toorder;
 	int			argc;
@@ -33,7 +34,6 @@ typedef void (*f_action)(t_stack **);
 //---[ DATA PROCESSING ]---
 //
 t_content	*create_content(int number, int index, t_data *d);
-void		get_mmm(t_data *d, int size);
 //
 //
 //---[ DATA ANALISYS ]---
@@ -63,15 +63,21 @@ void	error(t_data *d);
 // 
 void		push_A(t_stack **stack_A, t_stack **stack_B);
 void		push_B(t_stack **stack_A, t_stack  **stack_B);
+void		swap_A(t_stack **stack_A);
+void		swap_B(t_stack **stack_B);
 void		swap_AB(t_stack **stack_A, t_stack **stack_B);
+void		rotate_A(t_stack **stack_A);
+void		rotate_B(t_stack **stack_B);
 void		rotate_AB(t_stack **stack_A, t_stack **stack_B);
+void		rev_rot_A(t_stack **stack_A);
+void		rev_rot_B(t_stack **stack_B);
 void		rev_rot_AB(t_stack **stack_A, t_stack **stack_B);
 //
 //---[ SPECIFIC TOOLS ]---
 //
 t_stack		*go_el(t_stack *stack, int index);
 t_stack		*go_el_v(t_stack *stack, int value);
+t_stack		*get_min(t_stack *stack, int size);
 // revisar go_el_v es muy probable que no sea necesaria ya que ordlist es una lista de t_content y aunque este ordenada tiene los indices del stack sin ordenar.
-int			*get_numbers(t_stack);
 
 #endif

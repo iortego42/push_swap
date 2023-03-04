@@ -26,6 +26,7 @@ void	swap_AB(t_stack **stack_A , t_stack **stack_B)
 	swap(stack_B);
 	write(1, "ss", 2);
 }
+
 void	rotate_AB(t_stack **stack_A, t_stack **stack_B)
 {
 	rotate(stack_A);

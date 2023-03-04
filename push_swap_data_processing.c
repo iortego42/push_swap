@@ -1,5 +1,33 @@
 #include "push_swap.h"
 
+t_stack	*get_min(t_stack	*stack, int	size)
+{
+	t_stack	*min;
+	int	steps;
+
+	min = NULL;
+	steps = size;
+
+	while (stack->next != NULL && steps > 0)
+	{
+		if (min == NULL || ((t_content *)stack->content)->index < \
+				((t_content *)min->content)->index)
+			min = stack;
+		stack = stack->next;
+		steps--;
+	}
+	if (steps == size && stack->next == NULL)
+		while (stack->prev != NULL && steps > 0)
+		{
+			if (min == NULL || ((t_content *)stack->content)->index < \
+					((t_content *)min->content)->index)
+				min = stack;
+			stack = stack->prev;
+			steps--;
+		}
+	return (min);
+}
+
 void	get_mmm(t_data *d, int size)
 {
 	int	i;
@@ -9,7 +37,6 @@ void	get_mmm(t_data *d, int size)
 	{
 		d->min = (t_content *)go_el_v(d->A, d->ordlist[0])->content;
 		d->max = (t_content *)go_el_v(d->A, d->ordlist[size])->content;
-		d->median = (t_content *)go_el_v(d->A, d->ordlist[size / 2])->content;
 	}
 	else
 	{
@@ -22,7 +49,7 @@ void	get_mmm(t_data *d, int size)
 	}
 }
 
-t_content	*create_content(int number, int index, t_data *d)
+t_content	*create_content(int number, int ordind ,int index, t_data *d)
 {
 	t_content *new_content;
 
@@ -31,7 +58,7 @@ t_content	*create_content(int number, int index, t_data *d)
 	{
 		new_content->number = number;
 		new_content->index = index;
-		new_content->order = get_rate_order(&number, 1, d->ordlist);
+		new_content->order = ordind;
 	}
 	return (new_content);
 }
@@ -48,7 +75,7 @@ t_bool	charge_stack_A(t_data *d)
 		ordind = 0;
 		while (d->ordlist[ordind] != d->toorder[index])
 			ordind++;
-		new_element_content = create_content(d->toorder[index], ordind, d);
+		new_element_content = create_content(d->toorder[index], ordind, index, d);
 		if (new_element_content == NULL)
 		{
 			if (d->A != NULL)
