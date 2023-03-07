@@ -30,10 +30,17 @@ void	push_chunk_B(t_data *d, int size)
 
 void	search_next(t_stack	**stack, int index)
 {
-	while ((*stack)->next != NULL)		
+	t_stack	*aux;
+	
+	aux = *stack;
+	while (aux->next != NULL)		
 	{
-		if ()	
-	}	
+		if (((t_content *)aux->content)->order != index)
+			aux = aux->next;	
+		else
+			return ((void)"42Madrid");
+	}
+	
 }
 void	push_chunks_A(t_data *d, int size)
 {

@@ -33,7 +33,7 @@ typedef void (*f_action)(t_stack **);
 //
 //---[ DATA PROCESSING ]---
 //
-t_content	*create_content(int number, int index, t_data *d);
+t_content	*create_content(int number, int ordind, int index, t_data *d);
 //
 //
 //---[ DATA ANALISYS ]---

@@ -33,7 +33,7 @@ void	get_mmm(t_data *d, int size)
 	int	i;
 
 	i = 0;
-	if	(d->min == NULL)
+	if (d->min == NULL)
 	{
 		d->min = (t_content *)go_el_v(d->A, d->ordlist[0])->content;
 		d->max = (t_content *)go_el_v(d->A, d->ordlist[size])->content;
@@ -44,8 +44,6 @@ void	get_mmm(t_data *d, int size)
 			i++;
 		d->min = (t_content *)go_el_v(d->A, d->ordlist[i])->content;
 		d->max = (t_content *)go_el_v(d->A, d->ordlist[i + size])->content;
-		d->median = (t_content *)go_el_v(d->A, \
-				d->ordlist[(i + size) / 2])->content;
 	}
 }
 
@@ -66,7 +64,7 @@ t_content	*create_content(int number, int ordind ,int index, t_data *d)
 t_bool	charge_stack_A(t_data *d)
 {
 	int			index, ordind;
-	t_content	*new_element_content;
+	t_content	*new_elem_content;
 	 
 	d->A = NULL;
 	index = 0;
@@ -75,17 +73,17 @@ t_bool	charge_stack_A(t_data *d)
 		ordind = 0;
 		while (d->ordlist[ordind] != d->toorder[index])
 			ordind++;
-		new_element_content = create_content(d->toorder[index], ordind, index, d);
-		if (new_element_content == NULL)
+		new_elem_content = create_content(d->toorder[index], ordind, index, d);
+		if (new_elem_content == NULL)
 		{
 			if (d->A != NULL)
 				delete_stack(&d->A, delete_content);	
 			return (FALSE);
 		}
 		if (d->A == NULL)
-			d->A = new_stack_element(new_element_content);
+			d->A = new_stack_element(new_elem_content);
 		else
-			d->A->next = new_stack_element(new_element_content);
+			d->A->next = new_stack_element(new_elem_content);
 		index++;
 	}
 	d->A_elem = index++;	
