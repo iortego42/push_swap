@@ -27,6 +27,19 @@ t_stack	*get_min(t_stack	*stack, int	size)
 		}
 	return (min);
 }
+void	indexing_stack(t_stack *stack)
+{
+	int	index;
+
+	index = 0;
+	while (stack->next != NULL)
+	{
+		if (((t_content *)stack->content)->index != index)
+			((t_content *)stack->content)->index = index;
+		stack = stack->next;
+		index++;
+	}
+}
 
 void	get_mmm(t_data *d, int size)
 {

@@ -25,6 +25,7 @@ typedef	struct s_data
 	int			*toorder;
 	int			argc;
 	int			A_elem;
+	int			B_elem;
 	t_stack		*A;
 	t_stack		*B;
 } t_data;
@@ -33,6 +34,7 @@ typedef void (*f_action)(t_stack **);
 //
 //---[ DATA PROCESSING ]---
 //
+void	indexing_stack(t_stack *stack);
 t_content	*create_content(int number, int ordind, int index, t_data *d);
 //
 //
@@ -61,8 +63,8 @@ void	error(t_data *d);
 //
 //---[ PRINCIPAL TOOLS ]---
 // 
-void		push_A(t_stack **stack_A, t_stack **stack_B);
-void		push_B(t_stack **stack_A, t_stack  **stack_B);
+void		push_A(t_data 	*d);
+void		push_B(t_data	*d);
 void		swap_A(t_stack **stack_A);
 void		swap_B(t_stack **stack_B);
 void		swap_AB(t_stack **stack_A, t_stack **stack_B);

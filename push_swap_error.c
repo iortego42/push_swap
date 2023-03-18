@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
-static const char	*const error_mess[4] = {"UNKNOW ERROR", "ERROR", \
-	"[•] Parse ERROR", "[•] Stack Error"};
+static const char	*const error_mess[5] = {"UNKNOW ERROR", "ERROR", \
+	"[•] Parse ERROR", "[•] Stack Error", "[•] Element error"};
 
 void	delete_content(void *content)
 {
@@ -23,7 +23,7 @@ void	select_error(t_err_code code)
 
 	size = sizeof(error_mess) / sizeof(error_mess[0]);
 	if (code >= size )
-		spawn_error_message(error_mess[0]);
+		spawn_error_message(error_mess[UNKNOWN]);
 	else
 		spawn_error_message(error_mess[code]);	
 }
