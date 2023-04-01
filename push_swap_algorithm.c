@@ -14,16 +14,12 @@ t_bool	is_pushable(t_data *d, int ordindex, int size, t_bool isA)
 		return FALSE;
 }
 
-f_action	move_selector(int totalsize, t_stack *element, t_data *d)
+f_action
+move_selector(int totalsize, t_stack *element, t_data *d, t_bool isA)
 {
 	f_action	move;
 	t_stack		*top;
-	t_bool		isA;
 
-	if (totalsize == d->A_elem)
-		isA = TRUE;
-	else
-		isA = FALSE;
 	if (isA)
 	{
 		top = peek(d->A);
@@ -43,43 +39,26 @@ f_action	move_selector(int totalsize, t_stack *element, t_data *d)
 	return (move);
 }
 
-void	push_chunk_B(t_data *d, int size)
+void	push_chunk_B(t_data *d, int chunksize)
 {
 	t_stack		*min, *top;
 	f_action	funct;
 	int			elements;
 
-	min = get_min(d->A, size);
-	funct = move_selector(d->A_elem, min, d);
-	elements = is_pushable(d, ((t_content *)min->content)->order, size, TRUE);	
-	while(top != min || (elements % size) != 0)
+	min = get_min(d->A, chunksize);
+	funct = move_selector(d->A_elem, min, d, TRUE);
+	elements = 
+		is_pushable(d, ((t_content *)min->content)->order, chunksize, TRUE);	
+	while(top != min || (elements % chunksize) != 0)
 	{
 		top = peek(d->A);
-		if(is_pushable(d, ((t_content *)min->content)->order, size, TRUE))
+		if(is_pushable(d, ((t_content *)min->content)->order, chunksize, TRUE))
 		{
 			push_B(d);
 			elements++;
 		}
 		else
 			funct(&d->A);
-	}
-}
-
-void	move_n_A(t_data	*d, int	index)
-{
-	f_action	fun;
-	t_stack		*next;
-
-	fun = rev_rot_A;
-	next = go_el(d->A, index);
-	if (next == NULL)
-		return ((void)"42madrid");
-	fun = move_selector(d->A_elem, next, d);
-	next = peek(d->A);
-	while(((t_content *)next->content)->order != index)
-	{
-		fun(&d->A);
-		next = peek(d->A);
 	}
 }
 
@@ -111,8 +90,8 @@ void	push_chunks_A(t_data *d, int chunksize)
 	while (d->B_elem)
 	{
 		next = go_el(d->B, search_next(d, chunksize));
-		move = move_selector(d->B_elem, next, d);
-		while (TRUE != \
+		move = move_selector(d->B_elem, next, d, FALSE);
+		while (TRUE != 
 		is_pushable(d, ((t_content *)next->content)->order, d->B_elem, FALSE))
 			move(&d->B);
 		push_A(d);
@@ -121,7 +100,7 @@ void	push_chunks_A(t_data *d, int chunksize)
 
 t_bool 	is_ordered(t_stack *stack)
 {
-	if (((t_content *)stack->content)->number < \
+	if (((t_content *)stack->content)->number < 
 			((t_content *)stack->next->content)->number)
 		return (FALSE);
 	return (TRUE);

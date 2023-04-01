@@ -29,7 +29,16 @@ typedef	struct s_data
 	t_stack		*A;
 	t_stack		*B;
 } t_data;
-typedef enum {UNKNOWN, ERROR, PARSE, STACK} t_err_code;
+typedef enum {
+	OK, 
+	UNKNOWN, 
+	ERROR, 
+	PARSE, 
+	STACK, 
+	ELEMENT, 
+	INPUT, 
+	MALLOC
+} t_err_code;
 typedef void (*f_action)(t_stack **);
 //
 //---[ DATA PROCESSING ]---
@@ -40,12 +49,12 @@ t_content	*create_content(int number, int ordind, int index, t_data *d);
 //
 //---[ DATA ANALISYS ]---
 //
-int			*get_ordered_list(int *numberlist, int size);
+t_bool		get_ordered_list(t_data *d);
 int 		get_rate_order(int *numberlist, int size, int *orderedlist);
 char		***args_split(char **argv, int argc, t_data *d);
 t_bool		get_toorder(char	***list, t_data	*d);
 t_bool		check_numbers(char	**argv, int argc, t_data *d);
-t_bool		analize_input(char **argv, int argc, t_data *d);
+t_err_code	analize_input(char **argv, int argc, t_data *d);
 //
 //---[ INITIALIZATION ]---
 //
@@ -54,11 +63,11 @@ void		init(t_data *d);
 //
 //---[ ERROR ]---
 //
-void	spawn_error_message(const char *message);	
-void	select_error(t_err_code code);
-void	delete_content(void *content);
-void	delete_data(t_data *);
-void	error(t_data *d);
+void		spawn_error_message(const char *message);	
+void		select_error(t_err_code code);
+void		delete_content(void *content);
+void		delete_data(t_data *);
+t_err_code	error(t_data *d, t_err_code error);
 //
 //
 //---[ PRINCIPAL TOOLS ]---

@@ -1,7 +1,8 @@
+#include "libft/libft.h"
 #include "push_swap.h"
 
-static const char	*const error_mess[5] = {"UNKNOW ERROR", "ERROR", \
-	"[•] Parse ERROR", "[•] Stack Error", "[•] Element error"};
+static const char	*const error_mess[8] = { "Undefined Error", "Unclassified", "ERROR",
+	"Parsing", "Stack", "Element", "Wrong Input", "Malloc"};
 
 void	delete_content(void *content)
 {
@@ -14,6 +15,8 @@ void	spawn_error_message(const char *message)
 	int	len;
 
 	len = ft_strlen(message);
+	if (ft_strncmp(message, "ERROR", 5))
+		write(2, "[•] ERROR: ",11);
 	write(2, message, len);
 }
 
@@ -38,19 +41,20 @@ void	delete_data(t_data *d)
 		delete_stack(&d->A, delete_content);	
 	if (d->B != NULL)
 		delete_stack(&d->B, delete_content);
-
 }
 
-void	error(t_data *d)
+t_err_code	error(t_data *d, t_err_code error)
 {
-	t_err_code error;
-
-	error = UNKNOWN;
-	if (d->A == NULL || d->B == NULL)
-		error = STACK;
-	else if (d->ordlist == NULL || d->toorder == NULL)
-		error = PARSE;
-	delete_data(d);	
+	if (error == OK)
+	{
+		error = UNKNOWN;
+		if (d->A == NULL || d->B == NULL)
+			error = STACK;
+		else if (d->ordlist == NULL || d->toorder == NULL)
+			error = PARSE;
+	}
+	delete_data(d);
 	select_error(error);
+	return (error);
 }
 

@@ -1,24 +1,5 @@
 #include "push_swap.h"
 
-char	***args_split(char **argv, int argc, t_data *d)
-{
-	char	***list;
-	char	**aux;
-	int		index;
-
-	index = 0;
-	list = (char ***) malloc(sizeof(char **) * argc);
-	list[argc - 1] = NULL;
-	while (argc > 1)
-	{
-		list[index] = ft_split(argv[index], ' ');
-		if (list[index] == NULL)
-			ft_matrix_delete((void **)list, 3);
-		index++; 
-	}
-	return (list);
-}
-
 t_bool	check_numbers(char	**argv, int argc, t_data *d)
 {
 	int	x,y;
@@ -30,7 +11,7 @@ t_bool	check_numbers(char	**argv, int argc, t_data *d)
 		while (argv[x][y] != 0)
 		{
 			if (ft_isdigit(argv[x][y]) && \
-					(ft_isspace(argv[x][y + 1]) || argv[x][y]))
+					(ft_isspace(argv[x][y + 1]) || argv[x][y + 1] == 0))
 				d->argc++;
 			else if (!ft_isdigit(argv[x][y]) && !ft_isspace(argv[x][y]))
 				return (FALSE);
@@ -40,6 +21,27 @@ t_bool	check_numbers(char	**argv, int argc, t_data *d)
 		argc--;
 	}
 	return (TRUE);
+}
+
+char	***args_split(char **argv, int argc, t_data *d)
+{
+	char	***list;
+	char	**aux;
+	int		index;
+
+	index = 0;
+	list = (char ***) malloc(sizeof(char **) * argc);
+	if (list == NULL)
+		return (NULL);
+	list[argc - 1] = NULL;
+	while (argc > 1)
+	{
+		list[index] = ft_split(argv[index], ' ');
+		if (list[index] == NULL)
+			ft_matrix_delete((void **)list, 3);
+		index++; 
+	}
+	return (list);
 }
 
 t_bool	get_toorder(char	***list, t_data	*d)
@@ -64,54 +66,46 @@ t_bool	get_toorder(char	***list, t_data	*d)
 		}
 		x--;
 	}
+	ft_matrix_delete((void	**) list, 3);
 	return (TRUE);
 }
 
-int	*get_ordered_list(int *numberlist, int size)
+t_bool get_ordered_list(t_data *d)
 {
 	int	*orderedlist, index, auxc, min, nextmin;
 
 	auxc = 0;
 	index = 0;
-	orderedlist = ft_calloc(size, sizeof(int));
+	orderedlist = ft_calloc(d->argc, sizeof(int));
 	if (orderedlist == NULL)
-		return (NULL);
-	while (index < size)
+		return (FALSE);
+	while (index < d->argc)
 	{
-		orderedlist[index] = numberlist[index]; 
+		orderedlist[index] = d->toorder[index]; 
 		auxc = index;
 		while (orderedlist[auxc] < orderedlist[auxc - 1])
 		{
-			ft_switch_values((long long *)&orderedlist[auxc], \
+			ft_switch_values((long long *)&orderedlist[auxc],
 					(long long *)&orderedlist[auxc - 1]);	
 			auxc--;
 		}
 		if (orderedlist[auxc] == orderedlist[auxc - 1])
-			return (orderedlist = NULL, free(orderedlist), NULL);
+			return (orderedlist = NULL, free(orderedlist), TRUE);
 		index++;
 	}
-	return (orderedlist);
+	return (TRUE);
 }
 
-int get_rate_order(int *numberlist, int size, int *orderedlist)
+t_err_code	analize_input(char **argv, int argc, t_data *d)
 {
-	int orderrate;
-	int index1;
-	int	index2;
+	char	***list;
 
-
-	orderrate = 0;
-	index2 = size;
-	while (index2 > 0)
-	{
-		index1 = size;
-		if (numberlist[index2] != orderedlist[index2])
-		{
-			while (numberlist[index1] != orderedlist[index2])
-				index1--;
-			orderrate += index1 - index2;
-		}
-		index2--;
-	}
-	return (orderrate);
+	if (check_numbers(argv, argc, d) != TRUE)
+		return (INPUT);
+	list = args_split(argv, argc, d);
+	if (list == NULL)
+		return (MALLOC);
+	if (get_toorder(list, d) != TRUE || get_ordered_list(d) != TRUE)
+		return (MALLOC);
+	return (OK);
 }

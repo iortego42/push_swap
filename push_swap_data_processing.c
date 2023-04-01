@@ -10,7 +10,7 @@ t_stack	*get_min(t_stack	*stack, int	size)
 
 	while (stack->next != NULL && steps > 0)
 	{
-		if (min == NULL || ((t_content *)stack->content)->index < \
+		if (min == NULL || ((t_content *)stack->content)->index <
 				((t_content *)min->content)->index)
 			min = stack;
 		stack = stack->next;
@@ -19,7 +19,7 @@ t_stack	*get_min(t_stack	*stack, int	size)
 	if (steps == size && stack->next == NULL)
 		while (stack->prev != NULL && steps > 0)
 		{
-			if (min == NULL || ((t_content *)stack->content)->index < \
+			if (min == NULL || ((t_content *)stack->content)->index <
 					((t_content *)min->content)->index)
 				min = stack;
 			stack = stack->prev;
