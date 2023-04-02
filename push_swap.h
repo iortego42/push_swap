@@ -50,7 +50,6 @@ t_content	*create_content(int number, int ordind, int index, t_data *d);
 //---[ DATA ANALISYS ]---
 //
 t_bool		get_ordered_list(t_data *d);
-int 		get_rate_order(int *numberlist, int size, int *orderedlist);
 char		***args_split(char **argv, int argc, t_data *d);
 t_bool		get_toorder(char	***list, t_data	*d);
 t_bool		check_numbers(char	**argv, int argc, t_data *d);
@@ -88,7 +87,14 @@ void		rev_rot_AB(t_stack **stack_A, t_stack **stack_B);
 //
 t_stack		*go_el(t_stack *stack, int index);
 t_stack		*go_el_v(t_stack *stack, int value);
-t_stack		*get_min(t_stack *stack, int size);
+t_stack		*get_min(t_stack *stack, int chunksize);
+int			search_next(t_data *d, int chunksize);
+t_bool		is_pushable(t_stack *top, int ordindex, int chunksize);
+
+//
+//---[ ALGORITHM ]---
+//
+t_err_code algorithm(t_data *data);
 // revisar go_el_v es muy probable que no sea necesaria ya que ordlist es una lista de t_content y aunque este ordenada tiene los indices del stack sin ordenar.
 
 #endif
