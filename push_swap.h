@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/20 20:12:13 by iortego-          #+#    #+#             */
+/*   Updated: 2023/04/20 20:12:45 by iortego-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -88,7 +100,7 @@ void		rev_rot_AB(t_stack **stack_A, t_stack **stack_B);
 t_stack		*go_el(t_stack *stack, int index);
 t_stack		*go_el_v(t_stack *stack, int value);
 t_stack		*get_min(t_stack *stack, int chunksize);
-int			search_next(t_data *d, int chunksize);
+int			search_next(t_data *d, int chunksize, t_bool isA);
 t_bool		is_pushable(t_stack *top, int ordindex, int chunksize);
 
 //
