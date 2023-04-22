@@ -6,15 +6,26 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/20 20:12:48 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:05:04 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-static const char	*const error_mess[8] = { "Undefined Error", "Unclassified", "ERROR",
-	"Parsing", "Stack", "Element", "Wrong Input", "Malloc"};
+static const char	*const error_mess[ERROR + 1] = { 
+	"Undefined Error", 
+	"Unclassified", 
+	"Parsing", 
+	"Stack", 
+	"Element", 
+	"Wrong Input", 
+	"Malloc", 
+	"No element founded",
+	"Empty stack",
+
+	"ERROR",
+};
 
 void	delete_content(void *content)
 {
