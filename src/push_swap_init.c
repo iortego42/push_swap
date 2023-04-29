@@ -9,7 +9,6 @@ void 	init(t_data *d)
 	d->ordlist = NULL;
 	d->toorder = NULL;
 	d->max = NULL;
-	d->median = NULL;
 	d->min = NULL;
 }
 

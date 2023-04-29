@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:00 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/22 13:51:34 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:00:05 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,16 @@ t_bool 	is_ordered(t_stack *stack)
 	return (TRUE);
 }
 
-int	search_next(t_data *d, t_bool isA)
+int	search_next(t_data *d, t_stack *stack)
 {
-	t_stack	*top, *stack;
+	t_stack	*top;
 	int		elem, ordindex;
 
-	if (isA == TRUE)
-	{
+	if (d->A == stack)
 		elem = d->A_elem;
-		stack = d->B;	
-		top = peek(d->A);
-	}
-	else 
-	{
+	else if (d->B == stack) 
 		elem = d->B_elem;
-		stack = d->A;
-		top = peek(d->B);
-	}
+	top = peek(stack);
 	if (top == NULL)
 		return (((t_content *)get_min(stack, elem)->content)->index);
 	ordindex = ((t_content *)top->content)->order + 1;

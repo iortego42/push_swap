@@ -6,11 +6,10 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/22 12:55:05 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:28:50 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/stack_files/stack.h"
 #include "push_swap.h"
 
 t_stack	*get_min(t_stack	*stack, int	totalsize)
@@ -74,7 +73,7 @@ void	indexing_stack(t_stack *stack)
 	}
 }
 
-t_content	*create_content(int number, int ordind ,int index, t_data *d)
+t_content	*create_content(int number, int ordind ,int index)
 {
 	t_content *new_content;
 
@@ -101,7 +100,7 @@ t_bool	charge_stack_A(t_data *d)
 		ordind = 0;
 		while (d->ordlist[ordind] != d->toorder[d->A_elem])
 			ordind++;
-		new_elem_content = create_content(d->toorder[d->A_elem], ordind, d->A_elem, d);
+		new_elem_content = create_content(d->toorder[d->A_elem], ordind, d->A_elem);
 		if (new_elem_content == NULL)
 		{
 			if (d->A != NULL)

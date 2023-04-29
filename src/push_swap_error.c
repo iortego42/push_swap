@@ -6,11 +6,10 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/22 20:20:18 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:29:18 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
 static const char	*error_mess[ERROR + 1] = { 
@@ -48,7 +47,7 @@ void	select_error(t_err_code code)
 	int	size;
 
 	size = sizeof(error_mess) / sizeof(error_mess[0]);
-	if (code >= size )
+	if ((int)code >= size )
 		spawn_error_message(error_mess[UNKNOWN]);
 	else
 		spawn_error_message(error_mess[code]);	

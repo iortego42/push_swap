@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:33 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/20 20:13:11 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:43:49 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	t_data		*data;
 	t_err_code	status;
 
+	data = NULL;
 	init(data);
 	status = analize_input(argv, argc, data);
 	if (status != OK)

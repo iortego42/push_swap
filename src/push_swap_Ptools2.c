@@ -3,9 +3,6 @@
 
 void	rotate_A(t_stack **stack_A)
 {
-	int index; 
-	t_stack	*aux;
-
 	rotate(stack_A);
 	indexing_stack(*stack_A);	
 	write(1, "ra", 2);

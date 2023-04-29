@@ -23,10 +23,9 @@ t_bool	check_numbers(char	**argv, int argc, t_data *d)
 	return (TRUE);
 }
 
-char	***args_split(char **argv, int argc, t_data *d)
+char	***args_split(char **argv, int argc)
 {
 	char	***list;
-	char	**aux;
 	int		index;
 
 	index = 0;
@@ -46,9 +45,11 @@ char	***args_split(char **argv, int argc, t_data *d)
 
 t_bool	get_toorder(char	***list, t_data	*d)
 {
-	int	x, y, z, index;
+	int	x, y, index;
 	
 	index = 0;
+	x = 0;
+	y = 0;
 	d->toorder = (int *)malloc(sizeof(int) * d->argc);
 	if (d->toorder == NULL)
 		return (FALSE);
@@ -72,7 +73,7 @@ t_bool	get_toorder(char	***list, t_data	*d)
 
 t_bool get_ordered_list(t_data *d)
 {
-	int	*orderedlist, index, auxc, min, nextmin;
+	int	*orderedlist, index, auxc;
 
 	auxc = 0;
 	index = 0;
@@ -102,7 +103,7 @@ t_err_code	analize_input(char **argv, int argc, t_data *d)
 
 	if (check_numbers(argv, argc, d) != TRUE)
 		return (INPUT);
-	list = args_split(argv, argc, d);
+	list = args_split(argv, argc);
 	if (list == NULL)
 		return (MALLOC);
 	if (get_toorder(list, d) != TRUE || get_ordered_list(d) != TRUE)
