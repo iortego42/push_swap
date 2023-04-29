@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/29 19:23:24 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/29 21:59:39 by nachh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ f_action
 move_selector(int totalsize, t_stack *element, t_data *d)
 {
 	f_action	move;
-	t_stack		*top;
 
 	if (element == d->A)
 	{
-		top = peek(d->A);
 		if (((t_content *)element->content)->index > totalsize / 2)
 			move = rotate_A;
 		else
@@ -28,7 +26,6 @@ move_selector(int totalsize, t_stack *element, t_data *d)
 	}
 	else
 	{
-		top = peek(d->B);
 		if (((t_content *)element->content)->index > totalsize / 2)
 			move = rotate_B;
 		else

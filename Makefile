@@ -9,12 +9,12 @@ SRCDIR = src
 INCDIR = include 
 
 
-LDFLAGS := -L $(LFTPATH) -l$(LFTNAME)
+LDFLAGS = -L $(LFTPATH) -l$(LFTNAME)
 CFLAGS = -Wall -Wextra -Werror -I $(INCDIR) 
 
 LFTPATH = libft
 LFTNAME = ft
-LFT := $(LFTPATH)/lib$(LFTNAME).a
+LFT = $(LFTPATH)/lib$(LFTNAME).a
 CFLAGS += -I $(LFTPATH)/include
 
 
