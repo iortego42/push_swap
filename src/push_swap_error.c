@@ -6,14 +6,14 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/22 14:05:04 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:20:18 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-static const char	*const error_mess[ERROR + 1] = { 
+static const char	*error_mess[ERROR + 1] = { 
 	"Undefined Error", 
 	"Unclassified", 
 	"Parsing", 

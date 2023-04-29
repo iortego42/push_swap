@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:13 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/22 13:54:10 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:14:07 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/stack_files/stack.h"
-# include "libft/libft.h"
+# include "stack.h"
+# include "libft.h"
 
 //
 //---[ TYPES ]---
