@@ -32,7 +32,7 @@ OBJS := $(addprefix $(OBJDIR)/,$(SRCS:%.c=%.o))
 
 all: $(NAME)
 
-sanitize: CFLAGS += -fsanitize=address 
+sanitize: CFLAGS += -fsanitize=address -g3 
 sanitize: $(OBJS) $(LFTNAME)sanitize
 	@echo "[$(NAME)]->>\033[34m [◊] SANITIZE MODE ON [◊]\033[0m"
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) $(CFLAGS)

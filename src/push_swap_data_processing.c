@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/01 17:02:01 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:53:18 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ t_err_code charge_stack_A(t_data *d)
 	t_content	*new_elem_content;
 	t_stack		*element;
 
-	d->A = NULL;
-	d->A_elem = 0;
 	while (d->A_elem < d->argc)
 	{
 		ordind = 0;

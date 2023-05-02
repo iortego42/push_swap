@@ -6,14 +6,13 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/02 10:31:46 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:35:49 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-f_action
-move_selector(int totalsize, t_stack *element, t_data *d)
+f_action move_selector(int totalsize, t_stack *element, t_data *d)
 {
 	f_action	move;
 

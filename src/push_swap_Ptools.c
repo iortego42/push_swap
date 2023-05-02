@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:05 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/20 20:12:46 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:15:22 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	push_A(t_data	*d)
 	d->B_elem--;
 	indexing_stack(d->A);
 	indexing_stack(d->B);
-	write(1, "pa", 2);
+	write(1, "pa\n", 3);
 }
 
 void	push_B(t_data	*d)
@@ -37,7 +37,7 @@ void	push_B(t_data	*d)
 	d->A_elem--;
 	indexing_stack(d->A);
 	indexing_stack(d->B);
-	write(1, "pb", 2);
+	write(1, "pb\n", 3);
 }
 
 void	swap_AB(t_stack **stack_A , t_stack **stack_B)
@@ -46,7 +46,7 @@ void	swap_AB(t_stack **stack_A , t_stack **stack_B)
 	swap(stack_B);
 	indexing_stack(*stack_A);
 	indexing_stack(*stack_B);
-	write(1, "ss", 2);
+	write(1, "ss\n", 3);
 }
 
 void	rotate_AB(t_stack **stack_A, t_stack **stack_B)
@@ -55,7 +55,7 @@ void	rotate_AB(t_stack **stack_A, t_stack **stack_B)
 	rotate(stack_B);
 	indexing_stack(*stack_A);
 	indexing_stack(*stack_B);
-	write(1, "rr", 2);
+	write(1, "rr\n", 3);
 }
 void	rev_rot_AB(t_stack **stack_A, t_stack **stack_B)
 {
@@ -63,5 +63,5 @@ void	rev_rot_AB(t_stack **stack_A, t_stack **stack_B)
 	rev_rot(stack_B);
 	indexing_stack(*stack_A);
 	indexing_stack(*stack_B);
-	write(1, "rrr", 3);
+	write(1, "rrr\n", 3);
 }

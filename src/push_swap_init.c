@@ -30,6 +30,8 @@ void 	init(t_data *d)
 	d->toorder = NULL;
 	d->max = NULL;
 	d->min = NULL;
+	d->A_elem = 0;
+	d->B_elem = 0;
 }
 
 
