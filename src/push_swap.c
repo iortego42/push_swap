@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:33 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/29 16:43:49 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:36:59 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int main(int argc, char **argv)
 {
-	t_data		*data;
+	t_data		data;
 	t_err_code	status;
 
-	data = NULL;
-	init(data);
-	status = analize_input(argv, argc, data);
+	init(&data);
+	status = analize_input(argv, argc, &data);
 	if (status != OK)
-		return (error(data, status));
-	status = algorithm(data);
+		return (error(&data, status));
+	status = charge_stack_A(&data);
 	if (status != OK)
-		return (error(data, status));
+		return (error(&data, status));
+	status = algorithm(&data);
+	if (status != OK)
+		return (error(&data, status));
 	return (OK);
 }

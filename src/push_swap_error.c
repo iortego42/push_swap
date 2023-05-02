@@ -6,40 +6,40 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/29 19:29:18 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:06:37 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static const char	*error_mess[ERROR + 1] = { 
-	"Undefined Error", 
-	"Unclassified", 
-	"Parsing", 
-	"Stack", 
-	"Element", 
-	"Wrong Input", 
-	"Malloc", 
-	"No element founded",
-	"Empty stack",
+	"Undefined Error\n", 
+	"Unclassified\n", 
+	"Parsing\n", 
+	"Stack\n", 
+	"Element\n", 
+	"Wrong Input\n", 
+	"Malloc\n", 
+	"No element founded\n",
+	"Empty stack\n",
+	"No content\n",
 
-	"ERROR",
+	"ERROR\n",
 };
 
 void	delete_content(void *content)
 {
+	if (content == NULL)
+		return ((void)"42Madrid");
 	free(content);
 	content = NULL;
 }
 
 void	spawn_error_message(const char *message)
 {
-	int	len;
-
-	len = ft_strlen(message);
 	if (ft_strncmp(message, "ERROR", 5))
-		write(2, "[•] ERROR: ",11);
-	write(2, message, len);
+		ft_putstr_fd("\033[33;1m[•]\033[31m ERROR:\033[0m ", 2);
+	ft_putstr_fd((char *)message, 2);
 }
 
 void	select_error(t_err_code code)
@@ -58,7 +58,7 @@ void	delete_data(t_data *d)
 	if (d->ordlist != NULL)
 		free(d->ordlist);
 	if (d->toorder != NULL)
-		free(d->ordlist);
+		free(d->toorder);
 	if (d->A != NULL)
 		delete_stack(&d->A, delete_content);	
 	if (d->B != NULL)

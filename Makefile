@@ -1,4 +1,4 @@
-NAME= Push_Swap
+NAME= push_swap
 
 CC  = gcc
 AR = ar
@@ -10,13 +10,12 @@ INCDIR = include
 
 
 LDFLAGS = -L $(LFTPATH) -l$(LFTNAME)
-CFLAGS = -Wall -Wextra -Werror -I $(INCDIR) 
-
+# CFLAGS = -Wall -Wextra -Werror  -I $(INCDIR) -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror  -I $(INCDIR)
 LFTPATH = libft
 LFTNAME = ft
 LFT = $(LFTPATH)/lib$(LFTNAME).a
 CFLAGS += -I $(LFTPATH)/include
-
 
 SRCS =	\
 		push_swap.c \
@@ -33,8 +32,24 @@ OBJS := $(addprefix $(OBJDIR)/,$(SRCS:%.c=%.o))
 
 all: $(NAME)
 
+sanitize: CFLAGS += -fsanitize=address 
+sanitize: $(OBJS) $(LFTNAME)sanitize
+	@echo "[$(NAME)]->>\033[34m [◊] SANITIZE MODE ON [◊]\033[0m"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) $(CFLAGS)
+
+debug: CFLAGS += -g3
+debug: $(OBJS) $(LFTNAME)debug
+	@echo "[$(NAME)]->>\033[33m [∆] DEBUG MODE ON [∆]\033[0m"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)  
+
 $(NAME): $(OBJS) $(LFT) 
 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) 
+
+$(LFTNAME)debug:
+	make -C $(LFTPATH) debug
+
+$(LFTNAME)sanitize:
+	make -C $(LFTPATH) sanitize
 
 $(LFT): 
 	make -C $(LFTPATH)	
@@ -54,4 +69,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:  re clean fclean all
+red: fclean debug
+
+res: fclean sanitize
+
+.PHONY: sanitize debug res red re clean fclean all

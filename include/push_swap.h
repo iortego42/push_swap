@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:13 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/29 19:28:04 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:03:37 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_content
 typedef	struct s_data
 {
 	t_content	*min;
-	// revisar si realmente necesito max y median
 	t_content	*max;
 	int			*ordlist;
 	int			*toorder;
@@ -50,6 +49,7 @@ typedef enum {
 	MALLOC,
 	NO_ELEM,
 	EMPTY,
+	CONTENT,
 	ERROR, 
 } t_err_code;
 typedef void (*f_action)(t_stack **);
@@ -65,12 +65,13 @@ t_content	*create_content(int number, int ordind, int index);
 t_bool		get_ordered_list(t_data *d);
 char		***args_split(char **argv, int argc);
 t_bool		get_toorder(char	***list, t_data	*d);
-t_bool		check_numbers(char	**argv, int argc, t_data *d);
+t_bool		check_numbers(char	**argv, t_data *d);
 t_err_code	analize_input(char **argv, int argc, t_data *d);
 //
 //---[ INITIALIZATION ]---
 //
-t_bool		charge_stack_A(t_data *d);
+t_err_code	charge_stack_A(t_data *d);
+void		clearlist(char ***list);
 void		init(t_data *d);
 //
 //---[ ERROR ]---

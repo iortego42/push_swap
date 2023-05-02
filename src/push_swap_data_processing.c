@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/04/29 19:28:50 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:02:01 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_content	*create_content(int number, int ordind ,int index)
 	return (new_content);
 }
 
-t_bool	charge_stack_A(t_data *d)
+t_err_code charge_stack_A(t_data *d)
 {
 	int			ordind;
 	t_content	*new_elem_content;
@@ -105,13 +105,13 @@ t_bool	charge_stack_A(t_data *d)
 		{
 			if (d->A != NULL)
 				delete_stack(&d->A, delete_content);	
-			return (FALSE);
+			return (CONTENT);
 		}
 		element = new_stack_element(new_elem_content);
 		if (element == NULL)
-			return (FALSE);
+			return (ELEMENT);
 		push(&d->A, element);
 		d->A_elem++;
 	}
-	return (TRUE);
+	return (OK);
 }
