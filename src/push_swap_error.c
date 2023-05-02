@@ -6,14 +6,14 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/01 17:06:37 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:47:54 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static const char	*error_mess[ERROR + 1] = { 
-	"Undefined Error\n", 
+	"\033[35mUndefined\033[0m\n", 
 	"Unclassified\n", 
 	"Parsing\n", 
 	"Stack\n", 
@@ -23,7 +23,8 @@ static const char	*error_mess[ERROR + 1] = {
 	"No element founded\n",
 	"Empty stack\n",
 	"No content\n",
-
+	"Ordering list\n",
+		
 	"ERROR\n",
 };
 

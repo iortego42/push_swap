@@ -6,26 +6,26 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/02 12:35:49 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:23:37 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-f_action move_selector(int totalsize, t_stack *element, t_data *d)
+f_action move_selector(int *stacksize, t_stack *element, t_data *d)
 {
 	f_action	move;
 
-	if (&totalsize == &d->A_elem)
+	if (stacksize == &d->A_elem)
 	{
-		if (((t_content *)element->content)->index > totalsize / 2)
+		if (((t_content *)element->content)->index > *stacksize / 2)
 			move = rotate_A;
 		else
 			move = rev_rot_A;
 	}
 	else
 	{
-		if (((t_content *)element->content)->index > totalsize / 2)
+		if (((t_content *)element->content)->index > *stacksize / 2)
 			move = rotate_B;
 		else
 			move = rev_rot_B;
@@ -43,9 +43,9 @@ t_err_code push_chunk(t_data *d, int chunksize, t_stack **stack, t_stack *next)
 		elem = &d->A_elem;
 	else
 		elem = &d->B_elem;
-	move = move_selector(*elem, next, d);	
+	move = move_selector(elem, next, d);	
 	top = peek(*stack);
-	while (chunksize--)
+	while (chunksize-- && *stack != NULL)
 	{	
 		if (is_pushable(top, ((t_content *)next->content)->order, chunksize))
 		{
@@ -53,13 +53,15 @@ t_err_code push_chunk(t_data *d, int chunksize, t_stack **stack, t_stack *next)
 				push_B(d);
 			else if (&d->B == stack)
 				push_A(d);
-		}	
-		move(stack);
-		top = peek(*stack);
-		if (top == NULL)
-			return (EMPTY);
+		}
+		else
+		{
+			move(stack);
+			top = peek(*stack);
+			if (top == NULL)
+				return (EMPTY);
+		}
 	}
-	push_A(d);
 	return (OK);
 }
 
@@ -92,7 +94,7 @@ t_err_code algorithm(t_data *d)
 	if (d->argc > 100)
 		chunksize = 20;
 	else
-		chunksize = 15;
+		chunksize = 10;
 	status = push_chunks(d, chunksize, &d->A);
 	if (status != OK)
 		return (status);

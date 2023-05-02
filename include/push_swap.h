@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:13 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/01 17:03:37 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:21:27 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef enum {
 	NO_ELEM,
 	EMPTY,
 	CONTENT,
+	ORDER,
 	ERROR, 
 } t_err_code;
 typedef void (*f_action)(t_stack **);
@@ -108,6 +109,7 @@ t_bool		is_pushable(t_stack *top, int ordindex, int chunksize);
 //
 //---[ ALGORITHM ]---
 //
+f_action move_selector(int *stacksize, t_stack *element, t_data *d);
 t_err_code push_chunk(t_data *d, int chunksize, t_stack **stack, t_stack *next);
 t_err_code	push_chunks(t_data *d, int chunksize, t_stack **stack);
 t_err_code	algorithm(t_data *data);

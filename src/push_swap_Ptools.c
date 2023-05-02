@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:05 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/02 14:15:22 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:22:45 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	push_A(t_data	*d)
 	t_stack	*top_b;
 	
 	top_b = peek(d->B);
+	if (top_b  == NULL)
+		return ((void)"42Madrid");
 	push(&d->A, top_b);
 	d->A_elem++;
-	pop(&d->B, delete_content);
+	pop(&d->B, NULL);
 	d->B_elem--;
 	indexing_stack(d->A);
 	indexing_stack(d->B);
@@ -33,7 +35,7 @@ void	push_B(t_data	*d)
 	top_a = peek(d->A);
 	push(&d->B, top_a);
 	d->B_elem++;
-	pop(&d->A, delete_content);
+	pop(&d->A, NULL);
 	d->A_elem--;
 	indexing_stack(d->A);
 	indexing_stack(d->B);

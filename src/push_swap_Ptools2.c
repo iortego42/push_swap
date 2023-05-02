@@ -19,14 +19,14 @@ void	rev_rot_A(t_stack **stack_A)
 {
 	rev_rot(stack_A);
 	indexing_stack(*stack_A);
-	write(1, "rra\n", 3);
+	write(1, "rra\n", 4);
 }
 
 void	rev_rot_B(t_stack **stack_B)
 {
 	rev_rot(stack_B);
 	indexing_stack(*stack_B);
-	write(1, "rrb\n", 3);
+	write(1, "rrb\n", 4);
 }
 
 void	swap_A(t_stack **stack_A)

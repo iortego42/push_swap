@@ -83,9 +83,6 @@ t_bool get_ordered_list(t_data *d)
 {
 	int index, auxc;
 
-	d->ordlist = (int *) ft_calloc(d->argc, sizeof(int));
-	if (d->ordlist == NULL)
-		return (FALSE);
 	ft_memcpy(d->ordlist, d->toorder, sizeof(int) * d->argc);
 	index =  1;
 	while (d->argc > index)
@@ -112,12 +109,16 @@ t_err_code	analize_input(char **argv, int argc, t_data *d)
 	list = args_split(argv, argc);
 	if (list == NULL)
 		return (MALLOC);
-	if (get_toorder(list, d) != TRUE || get_ordered_list(d) != TRUE)
+	if (get_toorder(list, d) != TRUE)
 		return (MALLOC);
-
-
-
 	if (d->argc < 3)
+		return (INPUT);
+	d->ordlist = (int *) malloc(d->argc * sizeof(int));
+	if (d->ordlist == NULL)
+		return (MALLOC);
+	if (get_ordered_list(d) != TRUE)
+		return (ORDER);
+	if (!ft_memcmp((const int *) d->ordlist, (const int *) d->toorder, d->argc))
 		return (INPUT);
 	return (OK);
 }
