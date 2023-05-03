@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/02 16:47:54 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:45:01 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	delete_content(void *content)
 	if (content == NULL)
 		return ((void)"42Madrid");
 	free(content);
-	content = NULL;
 }
 
 void	spawn_error_message(const char *message)

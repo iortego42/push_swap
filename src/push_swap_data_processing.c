@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/02 11:53:18 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:07:16 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	indexing_stack(t_stack *stack)
 	int	index;
 
 	index = 0;
+	if (stack == NULL)
+		return ((void)"42Madrid");
 	while (stack->next != NULL)
 	{
 		if (((t_content *)stack->content)->index != index)
