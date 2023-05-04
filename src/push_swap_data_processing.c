@@ -6,19 +6,19 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/03 20:07:16 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:36:13 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*get_min(t_stack	*stack, int	totalsize)
+t_stack	*get_min(t_stack	*stack, int	stacksize)
 {
 	t_stack	*min;
 	int	steps;
 
 	min = stack;
-	steps = totalsize;
+	steps = stacksize;
 
 	while (stack->next != NULL && steps > 0)
 	{
@@ -28,7 +28,7 @@ t_stack	*get_min(t_stack	*stack, int	totalsize)
 		stack = stack->next;
 		steps--;
 	}
-	if (steps == totalsize && stack->next == NULL)
+	if (steps == stacksize && stack->next == NULL)
 		while (stack->prev != NULL && steps > 0)
 		{
 			if (min == NULL || ((t_content *)stack->content)->index <
@@ -40,24 +40,34 @@ t_stack	*get_min(t_stack	*stack, int	totalsize)
 	return (min);
 }
 
-void	get_mmm(t_data *d, int size)
+t_stack		*get_max(t_stack	*stack, int stacksize)
 {
-	int	i;
+	t_stack	*max;
+	int	steps;
 
-	i = 0;
-	if (d->min == NULL)
+	max = stack;
+	steps = stacksize;
+
+	while (stack->next != NULL && steps > 0)
 	{
-		d->min = (t_content *)go_el_v(d->A, d->ordlist[0])->content;
-		d->max = (t_content *)go_el_v(d->A, d->ordlist[size])->content;
+		if (((t_content *)stack->content)->index >
+				((t_content *)max->content)->index)
+			max = stack;
+		stack = stack->next;
+		steps--;
 	}
-	else
-	{
-		while (d->ordlist[i] != d->min->number)
-			i++;
-		d->min = (t_content *)go_el_v(d->A, d->ordlist[i])->content;
-		d->max = (t_content *)go_el_v(d->A, d->ordlist[i + size])->content;
-	}
+	if (steps == stacksize && stack->next == NULL)
+		while (stack->prev != NULL && steps > 0)
+		{
+			if (max == NULL || ((t_content *)stack->content)->index >
+					((t_content *)max->content)->index)
+				max = stack;
+			stack = stack->prev;
+			steps--;
+		}
+	return (max);
 }
+
 
 void	indexing_stack(t_stack *stack)
 {

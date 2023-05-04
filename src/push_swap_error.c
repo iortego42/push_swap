@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/03 18:45:01 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:29:52 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static const char	*error_mess[ERROR + 1] = {
 	"Empty stack\n",
 	"No content\n",
 	"Ordering list\n",
+	"Stack not linked correctly\n",
 		
 	"ERROR\n",
 };

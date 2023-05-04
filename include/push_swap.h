@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:13 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/02 17:21:27 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:42:43 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef enum {
 	EMPTY,
 	CONTENT,
 	ORDER,
+	STACK_LINK,
 	ERROR, 
 } t_err_code;
 typedef void (*f_action)(t_stack **);
@@ -103,6 +104,7 @@ void		rev_rot_AB(t_stack **stack_A, t_stack **stack_B);
 t_stack		*go_el(t_stack *stack, int index);
 t_stack		*go_el_v(t_stack *stack, int value);
 t_stack		*get_min(t_stack *stack, int totalsize);
+t_stack		*get_max(t_stack	*stack, int stacksize);
 int			search_next(t_data *d, t_stack *stack);
 t_bool		is_pushable(t_stack *top, int ordindex, int chunksize);
 

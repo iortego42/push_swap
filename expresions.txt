@@ -1,0 +1,5 @@
+Expresions in LLDB
+
+1 Print stack and the content of it
+
+t_stack *current = (t_stack *)data.A; while (current != NULL) { printf("\033[33mCurrent:\033[0m%p | \033[36mPrev:\033[0m%p\n\033[31mvalue: {%d - %d - %d}\033[0m\n", current, current->prev, ((t_content *)current->content)->number, ((t_content *)current->content)->index, ((t_content *)current->content)->order); current = (t_stack *)current->next; }
