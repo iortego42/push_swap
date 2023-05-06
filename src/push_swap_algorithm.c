@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/04 19:45:23 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:58:45 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,13 @@ t_err_code	push_chunks(t_data *d, int chunksize, t_stack **stack)
 	while (status == OK && *elem)
 	{
 		// nextind = search_next(d, *stack);
-		nextind = ((t_content *)get_min(*stack, *elem)->content)->index;
+		if (stack == &d->A)
+			next = get_min(*stack, *elem);
+		else
+			next = get_max(*stack, *elem);
+		if (next == NULL)
+			return (NO_ELEM);
+		nextind = ((t_content *)next->content)->index;
 		if (nextind == -1)
 			return (NO_ELEM);
 		next = go_el(*stack, nextind);
@@ -96,9 +102,9 @@ t_err_code algorithm(t_data *d)
 	t_err_code	status;
 
 	if (d->argc > 100)
-		chunksize = 20;
-	else
 		chunksize = 10;
+	else
+		chunksize = 6;
 	status = push_chunks(d, chunksize, &d->A);
 	if (status != OK)
 		return (status);

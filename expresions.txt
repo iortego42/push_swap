@@ -1,13 +1,13 @@
 Expresions in LLDB
 
-1 Print stack and the content of it
+[1] Print stack and the content of it
 
-t_stack *current = (t_stack *)data.A; while (current != NULL) { printf("\033[33mCurrent:\033[0m%p | \033[36mPrev:\033[0m%p\n\033[31mvalue: {%d - %d - %d}\033[0m\n", current, current->prev, ((t_content *)current->content)->number, ((t_content *)current->content)->index, ((t_content *)current->content)->order); current = (t_stack *)current->next; }
+expr t_stack *current = (t_stack *)data.A; while (current != NULL) { printf("\033[33mCurrent:\033[0m%p | \033[36mPrev:\033[0m%p\n\033[31mvalue: {%d - %d - %d}\033[0m\n", current, current->prev, ((t_content *)current->content)->number, ((t_content *)current->content)->index, ((t_content *)current->content)->order); current = (t_stack *)current->next; }
 
-2 Print stack and content of it ()
+[2] Print stack and content of it ()
 
 expr t_stack* p = d->A; int a = 0; while (p != NULL){printf(" - [%d]\n\033[31m   Puntero a stack:\033[0m  %p\n   \033[34mPuntero previo:\033[0m   %p\n   \033[32mPuntero siguiente:\033[0m%p\n\n",a++ , p, p->prev, p->next); p = p->next;}
 
-3 Print entire stack with counter and content
+[3] Print entire stack with counter and content
 
- expr t_stack *p = d->B; int a = 0; while (p != NULL){printf(" - [%d]\n\033[31m   Puntero a stack:\033[0m  %p\n   \033[34mPuntero previo:\033[0m   %p\n   \033[32mPuntero siguiente:\033[0m%p\n   \033[35mContenido:\033[0m        {%d - %d - %d}\n\n",a++ , p, p->prev, p->next, ((t_content *)p->content)->number, ((t_content *)p->content)->index, ((t_content *)p->content)->order); p = p->next;}
+expr t_stack *p = d->B; int a = 0; while (p != NULL){printf(" - [%d]\n\033[31m   Puntero a stack:\033[0m  %p\n   \033[34mPuntero previo:\033[0m   %p\n   \033[32mPuntero siguiente:\033[0m%p\n   \033[35mContenido:\033[0m        {N:%d - I:%d - O:%d}\n\n",a++ , p, p->prev, p->next, ((t_content *)p->content)->number, ((t_content *)p->content)->index, ((t_content *)p->content)->order); p = p->next;}

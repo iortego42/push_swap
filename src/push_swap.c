@@ -6,14 +6,19 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:33 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/01 12:36:59 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:03:57 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
+void pepe(){
+	system("leaks push_swap");
+}
 int main(int argc, char **argv)
 {
+	atexit(pepe);
 	t_data		data;
 	t_err_code	status;
 

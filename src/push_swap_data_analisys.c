@@ -95,6 +95,8 @@ t_bool get_ordered_list(t_data *d)
 			ft_switch_int_values(&d->ordlist[auxc], &d->ordlist[auxc - 1]);
 			auxc--;
 		}
+		if (auxc > 0 && d->ordlist[auxc] == d->ordlist[auxc - 1]) 
+			return (FALSE);
 		index++;
 	}
 	return (TRUE);
