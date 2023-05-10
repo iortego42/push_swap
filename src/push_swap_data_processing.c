@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/06 16:53:03 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:07:04 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack	*get_min(t_stack	*stack, int	stacksize)
 		return (NULL);
 	while (stack->next != NULL && steps > 0)
 	{
-		if (((t_content *)stack->content)->order > 
+		if (((t_content *)stack->content)->order < 
 				((t_content *)min->content)->order)
 			min = stack;
 		stack = stack->next;
@@ -33,7 +33,7 @@ t_stack	*get_min(t_stack	*stack, int	stacksize)
 	if (steps == stacksize && stack->next == NULL)
 		while (stack->prev != NULL && steps > 0)
 		{
-			if (min == NULL || ((t_content *)stack->content)->order >
+			if (min == NULL || ((t_content *)stack->content)->order <
 					((t_content *)min->content)->order)
 				min = stack;
 			stack = stack->prev;
@@ -54,7 +54,7 @@ t_stack		*get_max(t_stack	*stack, int stacksize)
 		return (NULL);
 	while (stack->next != NULL && steps < 0)
 	{
-		if (((t_content *)stack->content)->index <
+		if (((t_content *)stack->content)->index >
 				((t_content *)max->content)->index)
 			max = stack;
 		stack = stack->next;
@@ -63,7 +63,7 @@ t_stack		*get_max(t_stack	*stack, int stacksize)
 	if (steps == stacksize && stack->next == NULL)
 		while (stack->prev != NULL && steps < 0)
 		{
-			if (max == NULL || ((t_content *)stack->content)->index <
+			if (max == NULL || ((t_content *)stack->content)->index >
 					((t_content *)max->content)->index)
 				max = stack;
 			stack = stack->prev;
