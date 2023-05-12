@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/10 20:04:15 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:00:29 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ f_action move_selector(int *stacksize, t_stack *element, t_data *d)
 
 	if (stacksize == &d->A_elem)
 	{
-		if (((t_content *)element->content)->index < *stacksize / 2)
+		if (((t_content *)element->content)->index > *stacksize / 2)
 			move = rotate_A;
 		else
 			move = rev_rot_A;
 	}
 	else
 	{
-		if (((t_content *)element->content)->index < *stacksize / 2)
+		if (((t_content *)element->content)->index > *stacksize / 2)
 			move = rotate_B;
 		else
 			move = rev_rot_B;
@@ -36,7 +36,7 @@ f_action move_selector(int *stacksize, t_stack *element, t_data *d)
 t_err_code push_chunk(t_data *d, int chunksize, t_stack **stack, t_stack *next)
 {	
 	t_stack		*top;
-	int 		*elem;
+	int 		*elem, step;
 	f_action	move;
 
 	if (&d->A == stack)
@@ -45,24 +45,23 @@ t_err_code push_chunk(t_data *d, int chunksize, t_stack **stack, t_stack *next)
 		elem = &d->B_elem;
 	move = move_selector(elem, next, d);	
 	top = peek(*stack);
-	while (chunksize && *stack != NULL)
+	step = chunksize;
+	while ((step > 0 || (step == 0  && 0 == chunksize)) && *stack != NULL)
 	{	
-		if (TRUE == is_pushable(top, ((t_content *)next->content)->order, chunksize))
+		if (TRUE == is_pushable(top, ((t_content *)next->content)->order,
+		chunksize, d, elem))
 		{
 			if (&d->A == stack)
 				push_B(d);
 			else if (&d->B == stack)
 				push_A(d);
-			chunksize--;
+			step--;
 		}
 		else
-		{
 			move(stack);
-			top = peek(*stack);
-			if (top == NULL)
-				return (EMPTY);
-		}
-		
+		top = peek(*stack);
+		if (top == NULL && *elem != 0)
+			return (EMPTY);
 	}
 	return (OK);
 }
@@ -107,7 +106,7 @@ t_err_code algorithm(t_data *d)
 	status = push_chunks(d, chunksize, &d->A);
 	if (status != OK)
 		return (status);
-	status = push_chunks(d, chunksize, &d->B);
+	status = push_chunks(d, 0, &d->B);
 	if (status != OK)
 		return (status);
 	

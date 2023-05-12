@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/10 19:07:04 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:46:16 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ t_stack		*get_max(t_stack	*stack, int stacksize)
 
 	if (stack == NULL)
 		return (NULL);
-	while (stack->next != NULL && steps < 0)
+	while (stack->next != NULL && steps > 0)
 	{
-		if (((t_content *)stack->content)->index >
-				((t_content *)max->content)->index)
+		if (((t_content *)stack->content)->order >
+				((t_content *)max->content)->order)
 			max = stack;
 		stack = stack->next;
 		steps--;
 	}
 	if (steps == stacksize && stack->next == NULL)
-		while (stack->prev != NULL && steps < 0)
+		while (stack->prev != NULL && steps > 0)
 		{
-			if (max == NULL || ((t_content *)stack->content)->index >
-					((t_content *)max->content)->index)
+			if (max == NULL || ((t_content *)stack->content)->order >
+					((t_content *)max->content)->order)
 				max = stack;
 			stack = stack->prev;
 			steps--;

@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:00 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/01 20:03:22 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:04:26 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,22 @@ int	search_next(t_data *d, t_stack *stack)
 	return (((t_content *)stack->content)->index);
 }
 
-t_bool	is_pushable(t_stack *top, int ordindex, int chunksize)
+t_bool	is_pushable(t_stack *top, int ordindex, int chunksize, 
+		t_data *d, int *elem)
 {
-	if (((t_content *)top->content)->order < ordindex + chunksize)
-		return TRUE;
+	if (elem == &d->A_elem)
+	{
+		if (((t_content *)top->content)->order < ordindex + chunksize)
+			return TRUE;
+		else
+			return FALSE;
+	}
 	else
-		return FALSE;
+	{
+		if (((t_content *)top->content)->order == ordindex)
+			return TRUE;
+		else
+			return FALSE;
+
+	}
 }
