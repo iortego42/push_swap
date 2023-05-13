@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:05 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/13 13:02:43 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/13 17:05:48 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	push_A(t_data	*d)
 	indexing_stack(d->A);
 	indexing_stack(d->B);
 	write(1, "pa\n", 3);
-	MOVEMENTS++;
 }
 
 void	push_B(t_data	*d)
@@ -43,7 +42,6 @@ void	push_B(t_data	*d)
 	indexing_stack(d->A);
 	indexing_stack(d->B);
 	write(1, "pb\n", 3);
-	MOVEMENTS++;
 }
 
 void	swap_AB(t_stack **stack_A , t_stack **stack_B)
