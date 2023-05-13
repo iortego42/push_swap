@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:13 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/12 18:59:38 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:25:03 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 //
 //---[ TYPES ]---
 //
+extern int MOVEMENTS;
 typedef struct s_content
 {
 	int	number;

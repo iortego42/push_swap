@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/12 19:00:29 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:48:56 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ f_action move_selector(int *stacksize, t_stack *element, t_data *d)
 	if (stacksize == &d->A_elem)
 	{
 		if (((t_content *)element->content)->index > *stacksize / 2)
-			move = rotate_A;
-		else
 			move = rev_rot_A;
+		else
+			move = rotate_A;
 	}
 	else
 	{
 		if (((t_content *)element->content)->index > *stacksize / 2)
-			move = rotate_B;
-		else
 			move = rev_rot_B;
+		else
+			move = rotate_B;
 	}
 	return (move);
 }
@@ -69,7 +69,7 @@ t_err_code push_chunk(t_data *d, int chunksize, t_stack **stack, t_stack *next)
 t_err_code	push_chunks(t_data *d, int chunksize, t_stack **stack)
 {
 	t_stack		*next;
-	int			*elem, nextind;
+	int			*elem;
 	t_err_code	status;
 
 	if (&d->A == stack)
@@ -86,9 +86,6 @@ t_err_code	push_chunks(t_data *d, int chunksize, t_stack **stack)
 			next = get_max(*stack, *elem);
 		if (next == NULL)
 			return (STACK_LINK);
-		nextind = ((t_content *)next->content)->index;
-		if (nextind == -1)
-			return (NO_ELEM);
 		status = push_chunk(d, chunksize, stack, next);
 	}
 	return (status);
@@ -99,10 +96,10 @@ t_err_code algorithm(t_data *d)
 	int	chunksize;
 	t_err_code	status;
 
-	if (d->argc > 100)
-		chunksize = 10;
+	if (d->argc <= 100)
+		chunksize = d->argc / 4;
 	else
-		chunksize = 6;
+		chunksize = d->argc / 12;
 	status = push_chunks(d, chunksize, &d->A);
 	if (status != OK)
 		return (status);

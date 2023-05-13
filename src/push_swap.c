@@ -6,12 +6,14 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:33 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/09 18:41:27 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:23:00 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+
+int MOVEMENTS = 0;
 
 int main(int argc, char **argv)
 {

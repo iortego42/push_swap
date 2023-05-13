@@ -124,8 +124,3 @@ t_err_code	analize_input(char **argv, int argc, t_data *d)
 		return (INPUT);
 	return (OK);
 }
-
-
-
-
-

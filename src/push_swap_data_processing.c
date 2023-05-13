@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/12 17:46:16 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:45:15 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,19 @@ t_stack	*get_min(t_stack	*stack, int	stacksize)
 	while (stack->next != NULL && steps > 0)
 	{
 		if (((t_content *)stack->content)->order < 
-				((t_content *)min->content)->order)
+			((t_content *)min->content)->order)
 			min = stack;
 		stack = stack->next;
 		steps--;
 	}
-	if (steps == stacksize && stack->next == NULL)
-		while (stack->prev != NULL && steps > 0)
-		{
-			if (min == NULL || ((t_content *)stack->content)->order <
-					((t_content *)min->content)->order)
-				min = stack;
-			stack = stack->prev;
-			steps--;
-		}
+	while (stack->prev != NULL && steps > 0)
+	{
+		if (min == NULL || ((t_content *)stack->content)->order <
+			((t_content *)min->content)->order)
+			min = stack;
+		stack = stack->prev;
+		steps--;
+	}
 	return (min);
 }
 
@@ -55,19 +54,18 @@ t_stack		*get_max(t_stack	*stack, int stacksize)
 	while (stack->next != NULL && steps > 0)
 	{
 		if (((t_content *)stack->content)->order >
-				((t_content *)max->content)->order)
+			((t_content *)max->content)->order)
 			max = stack;
 		stack = stack->next;
 		steps--;
 	}
-	if (steps == stacksize && stack->next == NULL)
-		while (stack->prev != NULL && steps > 0)
-		{
-			if (max == NULL || ((t_content *)stack->content)->order >
-					((t_content *)max->content)->order)
-				max = stack;
-			stack = stack->prev;
-			steps--;
+	while (stack->prev != NULL && steps > 0)
+	{
+		if (max == NULL || ((t_content *)stack->content)->order >
+			((t_content *)max->content)->order)
+			max = stack;
+		stack = stack->prev;
+		steps--;
 		}
 	return (max);
 }
@@ -80,7 +78,7 @@ void	indexing_stack(t_stack *stack)
 	index = 0;
 	if (stack == NULL)
 		return ((void)"42Madrid");
-	while (stack->next != NULL)
+	while (stack != NULL)
 	{
 		if (((t_content *)stack->content)->index != index)
 			((t_content *)stack->content)->index = index;
