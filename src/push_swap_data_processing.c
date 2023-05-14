@@ -6,34 +6,33 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/13 15:45:15 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:02:05 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*get_min(t_stack	*stack, int	stacksize)
+t_stack	*get_min(t_stack *stack, int stacksize)
 {
 	t_stack	*min;
-	int	steps;
+	int		steps;
 
 	min = stack;
 	steps = stacksize;
-	
 	if (stack == NULL)
 		return (NULL);
 	while (stack->next != NULL && steps > 0)
 	{
-		if (((t_content *)stack->content)->order < 
-			((t_content *)min->content)->order)
+		if (((t_content *)stack->content)->order
+			< ((t_content *)min->content)->order)
 			min = stack;
 		stack = stack->next;
 		steps--;
 	}
 	while (stack->prev != NULL && steps > 0)
 	{
-		if (min == NULL || ((t_content *)stack->content)->order <
-			((t_content *)min->content)->order)
+		if (min == NULL || ((t_content *)stack->content)->order
+			< ((t_content *)min->content)->order)
 			min = stack;
 		stack = stack->prev;
 		steps--;
@@ -41,35 +40,33 @@ t_stack	*get_min(t_stack	*stack, int	stacksize)
 	return (min);
 }
 
-t_stack		*get_max(t_stack	*stack, int stacksize)
+t_stack	*get_max(t_stack *stack, int stacksize)
 {
 	t_stack	*max;
-	int	steps;
+	int		steps;
 
 	max = stack;
 	steps = stacksize;
-
 	if (stack == NULL)
 		return (NULL);
 	while (stack->next != NULL && steps > 0)
 	{
-		if (((t_content *)stack->content)->order >
-			((t_content *)max->content)->order)
+		if (((t_content *)stack->content)->order
+			> ((t_content *)max->content)->order)
 			max = stack;
 		stack = stack->next;
 		steps--;
 	}
 	while (stack->prev != NULL && steps > 0)
 	{
-		if (max == NULL || ((t_content *)stack->content)->order >
-			((t_content *)max->content)->order)
+		if (max == NULL || ((t_content *)stack->content)->order
+			> ((t_content *)max->content)->order)
 			max = stack;
 		stack = stack->prev;
 		steps--;
-		}
+	}
 	return (max);
 }
-
 
 void	indexing_stack(t_stack *stack)
 {
@@ -87,9 +84,9 @@ void	indexing_stack(t_stack *stack)
 	}
 }
 
-t_content	*create_content(int number, int ordind ,int index)
+t_content	*create_content(int number, int ordind, int index)
 {
-	t_content *new_content;
+	t_content	*new_content;
 
 	new_content = malloc(sizeof(t_content));
 	if (new_content != NULL)
@@ -101,29 +98,30 @@ t_content	*create_content(int number, int ordind ,int index)
 	return (new_content);
 }
 
-t_err_code charge_stack_A(t_data *d)
+t_err_code	charge_stack_a(t_data *d)
 {
 	int			ordind;
 	t_content	*new_elem_content;
 	t_stack		*element;
 
-	while (d->A_elem < d->argc)
+	while (d->aelem < d->argc)
 	{
 		ordind = 0;
-		while (d->ordlist[ordind] != d->toorder[d->A_elem])
+		while (d->ordlist[ordind] != d->toorder[d->aelem])
 			ordind++;
-		new_elem_content = create_content(d->toorder[d->A_elem], ordind, d->A_elem);
+		new_elem_content
+			= create_content(d->toorder[d->aelem], ordind, d->aelem);
 		if (new_elem_content == NULL)
 		{
-			if (d->A != NULL)
-				delete_stack(&d->A, delete_content);	
+			if (d->a != NULL)
+				delete_stack(&d->a, delete_content);
 			return (CONTENT);
 		}
 		element = new_stack_element(new_elem_content);
 		if (element == NULL)
-			return (ELEMENT);
-		push(&d->A, element);
-		d->A_elem++;
+			return (MALLOC);
+		push(&d->a, element);
+		d->aelem++;
 	}
 	return (OK);
 }

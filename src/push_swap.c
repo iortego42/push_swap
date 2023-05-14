@@ -6,16 +6,14 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:33 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/13 13:23:00 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:20:43 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-int MOVEMENTS = 0;
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data		data;
 	t_err_code	status;
@@ -24,7 +22,7 @@ int main(int argc, char **argv)
 	status = analize_input(argv, argc, &data);
 	if (status != OK)
 		return (error(&data, status));
-	status = charge_stack_A(&data);
+	status = charge_stack_a(&data);
 	if (status != OK)
 		return (error(&data, status));
 	status = algorithm(&data);

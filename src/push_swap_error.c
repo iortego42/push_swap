@@ -6,26 +6,25 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/04 19:29:52 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:06:09 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static const char	*error_mess[ERROR + 1] = { 
-	"\033[35mUndefined\033[0m\n", 
-	"Unclassified\n", 
-	"Parsing\n", 
-	"Stack\n", 
-	"Element\n", 
-	"Wrong Input\n", 
-	"Malloc\n", 
+static const char	*g_error_mess[ERROR + 1] = {
+	"\033[35mUndefined\033[0m\n",
+	"Unclassified\n",
+	"Parsing\n",
+	"Stack not founded\n",
+	"Stack pointer pointing to wrong stack\n",
+	"Wrong Input\n",
+	"Malloc\n",
 	"No element founded\n",
 	"Empty stack\n",
 	"No content\n",
 	"Ordering list\n",
 	"Stack not linked correctly\n",
-		
 	"ERROR\n",
 };
 
@@ -47,11 +46,11 @@ void	select_error(t_err_code code)
 {
 	int	size;
 
-	size = sizeof(error_mess) / sizeof(error_mess[0]);
-	if ((int)code >= size )
-		spawn_error_message(error_mess[UNKNOWN]);
+	size = sizeof(g_error_mess) / sizeof(g_error_mess[0]);
+	if ((int)code >= size)
+		spawn_error_message(g_error_mess[UNKNOWN]);
 	else
-		spawn_error_message(error_mess[code]);	
+		spawn_error_message(g_error_mess[code]);
 }
 
 void	delete_data(t_data *d)
@@ -60,10 +59,12 @@ void	delete_data(t_data *d)
 		free(d->ordlist);
 	if (d->toorder != NULL)
 		free(d->toorder);
-	if (d->A != NULL)
-		delete_stack(&d->A, delete_content);	
-	if (d->B != NULL)
-		delete_stack(&d->B, delete_content);
+	if (d->a != NULL)
+		delete_stack(&d->a, delete_content);
+	if (d->a != NULL)
+		delete_stack(&d->b, delete_content);
+	d->sp = NULL;
+	d->sec = NULL;
 }
 
 t_err_code	error(t_data *d, t_err_code error)
@@ -71,7 +72,7 @@ t_err_code	error(t_data *d, t_err_code error)
 	if (error == OK)
 	{
 		error = UNKNOWN;
-		if (d->A == NULL || d->B == NULL)
+		if (d->a == NULL || d->b == NULL)
 			error = STACK;
 		else if (d->ordlist == NULL || d->toorder == NULL)
 			error = PARSE;
@@ -80,4 +81,3 @@ t_err_code	error(t_data *d, t_err_code error)
 	select_error(error);
 	return (error);
 }
-

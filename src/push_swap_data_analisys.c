@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_data_analisys.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/14 19:47:30 by iortego-          #+#    #+#             */
+/*   Updated: 2023/05/14 20:39:19 by iortego-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_bool	check_numbers(char	**argv, t_data *d)
 {
-	int	x,y;
+	int	x;
+	int	y;
 
 	x = 1;
 	while (argv[x] != NULL)
@@ -36,16 +49,18 @@ char	***args_split(char **argv, int argc)
 	{
 		list[index] = ft_split(argv[index + 1], ' ');
 		if (list[index] == NULL)
-			return(clearlist(list), NULL);
-		index++; 
+			return (clearlist(list), NULL);
+		index++;
 	}
 	return (list);
 }
 
 t_bool	get_toorder(char	***list, t_data	*d)
 {
-	int	x, y, index;
-	
+	int	x;
+	int	y;
+	int	index;
+
 	index = 0;
 	x = 0;
 	d->toorder = (int *)malloc(sizeof(int) * d->argc);
@@ -66,36 +81,27 @@ t_bool	get_toorder(char	***list, t_data	*d)
 		}
 		x--;
 	}
-	clearlist(list);
-	/*ft_matrix_delete((void	**) list, 3);*/
-	return (TRUE);
+	return (clearlist(list), TRUE);
 }
 
-void ft_switch_int_values(int *a, int *b)
+t_bool	get_ordered_list(t_data *d)
 {
-	int aux;
-
-	aux = *a;
-	*a = *b;
-	*b = aux;
-}
-t_bool get_ordered_list(t_data *d)
-{
-	int index, auxc;
+	int	index;
+	int	auxc;
 
 	ft_memcpy(d->ordlist, d->toorder, sizeof(int) * d->argc);
-	index =  1;
+	index = 1;
 	while (d->argc > index)
 	{
 		auxc = index;
-		if (d->ordlist[index] == d->ordlist[index - 1]) 
+		if (d->ordlist[index] == d->ordlist[index - 1])
 			return (FALSE);
 		while (auxc > 0 && d->ordlist[auxc] < d->ordlist[auxc - 1])
 		{
 			ft_switch_int_values(&d->ordlist[auxc], &d->ordlist[auxc - 1]);
 			auxc--;
 		}
-		if (auxc > 0 && d->ordlist[auxc] == d->ordlist[auxc - 1]) 
+		if (auxc > 0 && d->ordlist[auxc] == d->ordlist[auxc - 1])
 			return (FALSE);
 		index++;
 	}
@@ -105,7 +111,7 @@ t_bool get_ordered_list(t_data *d)
 t_err_code	analize_input(char **argv, int argc, t_data *d)
 {
 	char	***list;
-	
+
 	if (check_numbers(argv, d) != TRUE)
 		return (INPUT);
 	list = args_split(argv, argc);
