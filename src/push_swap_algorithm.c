@@ -6,10 +6,11 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/14 20:42:18 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:02:55 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
 
 t_action	move_selector(t_stack *element, t_data *d)
@@ -19,16 +20,16 @@ t_action	move_selector(t_stack *element, t_data *d)
 	if (d->sec == &d->aelem)
 	{
 		if (((t_content *)element->content)->index > *d->sec / 2)
-			move = rev_rot_a;
-		else
 			move = rotate_a;
+		else
+			move = rev_rot_a;
 	}
 	else if (d->sec == &d->belem)
 	{
 		if (((t_content *)element->content)->index > *d->sec / 2)
-			move = rev_rot_b;
-		else
 			move = rotate_b;
+		else
+			move = rev_rot_b;
 	}
 	else
 		return (NULL);
@@ -103,7 +104,11 @@ t_err_code	algorithm(t_data *d)
 {
 	t_err_code	status;
 
-	if (d->argc <= 100)
+	if (d->argc == 2)
+		return (swap_a(&d->a), OK);
+	else if (d->argc <= 5)
+		return (order_5(d), OK);
+	else if (d->argc <= 100)
 		d->chunksize = d->argc / 4;
 	else
 		d->chunksize = d->argc / 12;

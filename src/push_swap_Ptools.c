@@ -6,11 +6,12 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:11:32 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/14 20:43:36 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:43:46 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "stack.h"
 
 void	push_a(t_data	*d)
 {

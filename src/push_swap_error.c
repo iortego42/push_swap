@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/14 20:06:09 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:29:53 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	spawn_error_message(const char *message)
 	ft_putstr_fd((char *)message, 2);
 }
 
-void	select_error(t_err_code code)
+/*void	select_error(t_err_code code)
 {
 	int	size;
 
@@ -51,6 +51,11 @@ void	select_error(t_err_code code)
 		spawn_error_message(g_error_mess[UNKNOWN]);
 	else
 		spawn_error_message(g_error_mess[code]);
+}*/
+void	select_error(t_err_code code)
+{
+	code = ERROR;
+	spawn_error_message(g_error_mess[code]);
 }
 
 void	delete_data(t_data *d)

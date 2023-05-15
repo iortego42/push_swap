@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:31:48 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/14 20:31:50 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:20:17 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_content	*create_content(int number, int ordind, int index);
 t_bool		get_ordered_list(t_data *d);
 char		***args_split(char **argv, int argc);
 t_bool		get_toorder(char	***list, t_data	*d);
+t_bool		is_ordered(int	*list, int argc);
+t_bool		check_number(const char	*number, t_data	*d);
 t_bool		check_numbers(char	**argv, t_data *d);
 t_err_code	analize_input(char **argv, int argc, t_data *d);
 //
@@ -115,4 +117,9 @@ t_err_code	push_chunk(void (*pushfun)(t_data *), t_action move, t_data *d,
 				t_stack *next);
 t_err_code	push_chunks(t_data *d);
 t_err_code	algorithm(t_data *data);
+void		case_min_bot(t_data *d);
+void		case_min_mid(t_data *d);
+void		case_min_top(t_data *d);
+void		order_3(t_data *d);
+void		order_5(t_data *d);
 #endif

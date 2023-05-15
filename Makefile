@@ -26,7 +26,8 @@ SRCS =	\
 		push_swap_init.c \
 		push_swap_Ptools.c \
 		push_swap_Ptools2.c \
-		push_swap_specific_tools.c
+		push_swap_specific_tools.c \
+		push_swap_order_5.c
 
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:%.c=%.o))
 
