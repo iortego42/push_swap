@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:47:30 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/15 20:19:50 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:37:21 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ t_err_code	analize_input(char **argv, int argc, t_data *d)
 	if (get_ordered_list(d) != TRUE)
 		return (ORDER);
 	if (is_ordered(d->toorder, d->argc) == TRUE)
-		return (INPUT);
+		return (ORDER);
 	return (OK);
 }

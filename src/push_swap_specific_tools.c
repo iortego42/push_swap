@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:00 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/15 20:19:59 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:38:11 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ t_bool	check_number(const char *number, t_data *d)
 	y = 0;
 	while (number[y] != 0)
 	{
-		if (!ft_isdigit(number[y]) && !ft_isspace(number[y])
-			&& number[y] == '-' && !ft_isdigit(number[y + 1]))
+		if ((!ft_isdigit(number[y]) && !ft_isspace(number[y]))
+			|| (number[y] == '-' && !ft_isdigit(number[y + 1])))
 			return (FALSE);
 		y++;
 	}
@@ -74,7 +74,7 @@ t_bool	is_ordered(int *list, int argc)
 	index = 0;
 	while (index < argc - 1)
 	{
-		if (list[index] > list[index + 1])
+		if (list[index] < list[index + 1])
 			return (FALSE);
 		index++;
 	}

@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/15 17:29:53 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:37:02 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static const char	*g_error_mess[ERROR + 1] = {
 	"No content\n",
 	"Ordering list\n",
 	"Stack not linked correctly\n",
-	"ERROR\n",
+	"Error\n",
 };
 
 void	delete_content(void *content)
@@ -37,7 +37,7 @@ void	delete_content(void *content)
 
 void	spawn_error_message(const char *message)
 {
-	if (ft_strncmp(message, "ERROR", 5))
+	if (ft_strncmp(message, "Error", 5))
 		ft_putstr_fd("\033[33;1m[•]\033[31m ERROR:\033[0m ", 2);
 	ft_putstr_fd((char *)message, 2);
 }
@@ -74,6 +74,8 @@ void	delete_data(t_data *d)
 
 t_err_code	error(t_data *d, t_err_code error)
 {
+	if (error == ORDER)
+		return (OK);
 	if (error == OK)
 	{
 		error = UNKNOWN;
