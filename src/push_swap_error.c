@@ -6,27 +6,11 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:53 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/18 18:37:02 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:37:56 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static const char	*g_error_mess[ERROR + 1] = {
-	"\033[35mUndefined\033[0m\n",
-	"Unclassified\n",
-	"Parsing\n",
-	"Stack not founded\n",
-	"Stack pointer pointing to wrong stack\n",
-	"Wrong Input\n",
-	"Malloc\n",
-	"No element founded\n",
-	"Empty stack\n",
-	"No content\n",
-	"Ordering list\n",
-	"Stack not linked correctly\n",
-	"Error\n",
-};
 
 void	delete_content(void *content)
 {
@@ -42,21 +26,34 @@ void	spawn_error_message(const char *message)
 	ft_putstr_fd((char *)message, 2);
 }
 
-/*void	select_error(t_err_code code)
+void	select_error(t_err_code code)
 {
-	int	size;
+	const char	*error_mess[EC_SIZE] = {
+		"\033[35mUndefined\033[0m\n",
+		"Unclassified\n",
+		"Parsing\n",
+		"Stack not founded\n",
+		"Stack pointer pointing to wrong stack\n",
+		"Wrong Input\n",
+		"Malloc\n",
+		"No element founded\n",
+		"Empty stack\n",
+		"No content\n",
+		"Ordering list\n",
+		"Stack not linked correctly\n",
+		"Error\n",
+	};
 
-	size = sizeof(g_error_mess) / sizeof(g_error_mess[0]);
-	if ((int)code >= size)
-		spawn_error_message(g_error_mess[UNKNOWN]);
+	if (code >= EC_SIZE)
+		spawn_error_message(error_mess[EC_UNKNOWN]);
 	else
-		spawn_error_message(g_error_mess[code]);
-}*/
+		spawn_error_message(error_mess[code]);
+}/*
 void	select_error(t_err_code code)
 {
 	code = ERROR;
 	spawn_error_message(g_error_mess[code]);
-}
+}*/
 
 void	delete_data(t_data *d)
 {
@@ -74,15 +71,15 @@ void	delete_data(t_data *d)
 
 t_err_code	error(t_data *d, t_err_code error)
 {
-	if (error == ORDER)
+	if (error == EC_ORDER)
 		return (OK);
 	if (error == OK)
 	{
-		error = UNKNOWN;
+		error = EC_UNKNOWN;
 		if (d->a == NULL || d->b == NULL)
-			error = STACK;
+			error = EC_STACK;
 		else if (d->ordlist == NULL || d->toorder == NULL)
-			error = PARSE;
+			error = EC_PARSE;
 	}
 	delete_data(d);
 	select_error(error);

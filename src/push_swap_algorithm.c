@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:11:39 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/15 20:02:55 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:39:58 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_err_code	push_chunk(void (*pushfun)(t_data *),
 			move(d->sp);
 		top = peek(*d->sp);
 		if (top == NULL && *d->sec != 0)
-			return (EMPTY);
+			return (EC_EMPTY);
 	}
 	return (OK);
 }
@@ -70,7 +70,7 @@ t_err_code	push_manager(t_data *d, t_stack *next)
 	else if (d->sp == &d->b)
 		pushfun = push_a;
 	else
-		return (UNKNOWN);
+		return (EC_UNKNOWN);
 	move = move_selector(next, d);
 	return (push_chunk(pushfun, move, d, next));
 }
@@ -85,7 +85,7 @@ t_err_code	push_chunks(t_data *d)
 	else if (d->sp == &d->b)
 		d->sec = &d->belem;
 	else
-		return (NO_STACK);
+		return (EC_NO_STACK);
 	status = OK;
 	while (status == OK && *d->sec)
 	{
@@ -94,7 +94,7 @@ t_err_code	push_chunks(t_data *d)
 		else
 			next = get_max(*d->sp, *d->sec);
 		if (next == NULL)
-			return (STACK_LINK);
+			return (EC_STACK_LINK);
 		status = push_manager(d, next);
 	}
 	return (status);

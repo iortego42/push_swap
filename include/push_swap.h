@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:31:48 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/15 20:20:17 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:38:38 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,19 @@ typedef struct s_data
 }	t_data;
 typedef enum s_err_code{
 	OK,
-	UNKNOWN,
-	PARSE,
-	STACK,
-	NO_STACK,
-	INPUT,
-	MALLOC,
-	NO_ELEM,
-	EMPTY,
-	CONTENT,
-	ORDER,
-	STACK_LINK,
-	ERROR,
+	EC_UNKNOWN,
+	EC_PARSE,
+	EC_STACK,
+	EC_NO_STACK,
+	EC_INPUT,
+	EC_MALLOC,
+	EC_NO_ELEM,
+	EC_EMPTY,
+	EC_CONTENT,
+	EC_ORDER,
+	EC_STACK_LINK,
+	EC_ERROR,
+	EC_SIZE
 }	t_err_code;
 typedef void	(*t_action)(t_stack **);
 //

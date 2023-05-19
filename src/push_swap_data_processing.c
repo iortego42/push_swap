@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:18 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/15 20:03:33 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:40:33 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,11 @@ t_err_code	charge_stack_a(t_data *d)
 		{
 			if (d->a != NULL)
 				delete_stack(&d->a, delete_content);
-			return (CONTENT);
+			return (EC_CONTENT);
 		}
 		element = new_stack_element(new_elem_content);
 		if (element == NULL)
-			return (MALLOC);
+			return (EC_MALLOC);
 		push(&d->a, element);
 		d->aelem++;
 	}

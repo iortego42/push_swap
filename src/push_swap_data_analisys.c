@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 19:47:30 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/18 18:37:21 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:37:04 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,20 @@ t_err_code	analize_input(char **argv, int argc, t_data *d)
 	char	***list;
 
 	if (check_numbers(argv, d) != TRUE)
-		return (INPUT);
+		return (EC_INPUT);
 	list = args_split(argv, argc);
 	if (list == NULL)
-		return (MALLOC);
+		return (EC_MALLOC);
 	if (get_toorder(list, d) != TRUE)
-		return (MALLOC);
+		return (EC_MALLOC);
 	if (d->argc < 2)
-		return (INPUT);
+		return (EC_INPUT);
 	d->ordlist = (int *) malloc(d->argc * sizeof(int));
 	if (d->ordlist == NULL)
-		return (MALLOC);
+		return (EC_MALLOC);
 	if (get_ordered_list(d) != TRUE)
-		return (ORDER);
+		return (EC_ORDER);
 	if (is_ordered(d->toorder, d->argc) == TRUE)
-		return (ORDER);
+		return (EC_ORDER);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: iortego- <iortego-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:12:00 by iortego-          #+#    #+#             */
-/*   Updated: 2023/05/18 18:38:11 by iortego-         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:08:43 by iortego-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ t_bool	check_number(const char *number, t_data *d)
 	y = 0;
 	while (number[y] != 0)
 	{
-		if ((!ft_isdigit(number[y]) && !ft_isspace(number[y]))
-			|| (number[y] == '-' && !ft_isdigit(number[y + 1])))
+		if (!ft_isdigit(number[y]) && !ft_isspace(number[y]) 
+			&& number[y] != '-' && number[y] != '+' 
+			&& !ft_isdigit(number[y + 1]))
 			return (FALSE);
 		y++;
 	}
@@ -58,9 +59,9 @@ t_bool	check_number(const char *number, t_data *d)
 		while (ft_isspace(number[y]))
 			y++;
 		n = ft_atoi(&number[y]);
-		if (n == 0 && number[y] != '0')
+		if (n == 0 && number[y] != '0' && number[y] != 0)
 			return (FALSE);
-		while (ft_isdigit(number[y]) || number[y] == '-')
+		while (ft_isdigit(number[y]) || number[y] == '-' || number[y] == '+')
 			y++;
 		d->argc++;
 	}
